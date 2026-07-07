@@ -19,7 +19,9 @@ npm run preview  # preview the production build
 
 ## Deploy
 
-**Automatic:** push to `main` on GitHub — Cloudflare Pages builds with `npm run build` and publishes `./dist`.
+**Automatic:** every push to `main` triggers a Cloudflare Pages build via GitHub Actions (`.github/workflows/deploy-pages.yml`).
+
+Cloudflare Pages project is also connected to `michelborrer/beautiful-vegan` on branch `main` with build command `npm run build` and output directory `dist`.
 
 **Manual fallback** (Worker assets deploy):
 
@@ -30,12 +32,13 @@ npx wrangler deploy
 
 The legacy Worker `long-pond-37c9` config remains in `wrangler.jsonc` for emergency manual deploys.
 
-## Cloudflare Pages
+## Custom domain DNS
 
-| Setting | Value |
-|---------|-------|
-| Project | `beautiful-vegan` |
-| Repo | `michelborrer/beautiful-vegan` |
-| Branch | `main` |
-| Build | `npm run build` |
-| Output | `dist` |
+If `beautiful-vegan.com` or `www.beautiful-vegan.com` show as pending in Pages, add proxied CNAME records in Cloudflare DNS for zone `beautiful-vegan.com`:
+
+| Name | Type | Target | Proxy |
+|------|------|--------|-------|
+| `@` | CNAME | `beautiful-vegan.pages.dev` | On |
+| `www` | CNAME | `beautiful-vegan.pages.dev` | On |
+
+Remove any conflicting apex A/AAAA records. Pages custom domains must be active before they replace the old Worker route.
