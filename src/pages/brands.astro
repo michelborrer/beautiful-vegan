@@ -11,28 +11,29 @@ const pageDescription = 'Is your favorite brand truly cruelty-free? We research 
 const breadcrumbItems = [{ label: 'Brands' }];
 
 const featuredBrands = [
-  { name: 'The Ordinary', crueltyFree: true, vegan: 'mostly', parent: 'Estée Lauder', certified: 'PETA', featured: true },
-  { name: 'CeraVe', crueltyFree: false, vegan: 'no', parent: "L'Oréal", certified: '', featured: true },
-  { name: 'Versed', crueltyFree: true, vegan: 'yes', parent: 'Independent', certified: 'Leaping Bunny', featured: false },
-  { name: 'Tower 28', crueltyFree: true, vegan: 'yes', parent: 'Independent', certified: 'Leaping Bunny', featured: false },
-  { name: 'e.l.f.', crueltyFree: true, vegan: 'yes', parent: 'e.l.f. Beauty', certified: 'PETA, Leaping Bunny', featured: false },
-  { name: 'Glossier', crueltyFree: true, vegan: 'mostly', parent: 'Independent', certified: 'Leaping Bunny', featured: false },
-  { name: 'Drunk Elephant', crueltyFree: true, vegan: 'mostly', parent: 'Shiseido', certified: 'Leaping Bunny', featured: false },
-  { name: 'Kiehl\'s', crueltyFree: false, vegan: 'no', parent: "L'Oréal", certified: '', featured: true },
-  { name: 'Youth to the People', crueltyFree: true, vegan: 'yes', parent: 'L\'Oréal', certified: 'PETA', featured: false },
-  { name: 'OSEA', crueltyFree: true, vegan: 'yes', parent: 'Independent', certified: 'PETA, Leaping Bunny', featured: false },
-  { name: 'Fenty Beauty', crueltyFree: true, vegan: 'mostly', parent: 'LVMH', certified: 'PETA', featured: false },
-  { name: 'Charlotte Tilbury', crueltyFree: true, vegan: 'mostly', parent: 'Puig', certified: 'Leaping Bunny', featured: false },
+  { name: 'The Ordinary', crueltyFree: true, vegan: 'mostly', parent: 'Estée Lauder', certified: 'PETA', featured: true, href: '/brands/is-the-ordinary-cruelty-free' },
+  { name: 'CeraVe', crueltyFree: false, vegan: 'no', parent: "L'Oréal", certified: '', featured: true, href: '/brands/is-cerave-cruelty-free' },
+  { name: 'Versed', crueltyFree: true, vegan: 'yes', parent: 'Independent', certified: 'Leaping Bunny', featured: false, href: '/brands/is-versed-cruelty-free' },
+  { name: 'Tower 28', crueltyFree: true, vegan: 'yes', parent: 'Independent', certified: 'Leaping Bunny', featured: false, href: '/brands/is-tower-28-cruelty-free' },
+  { name: 'e.l.f.', crueltyFree: true, vegan: 'yes', parent: 'e.l.f. Beauty', certified: 'PETA, Leaping Bunny', featured: false, href: '/brands/is-e-l-f-cruelty-free' },
+  { name: 'Glossier', crueltyFree: true, vegan: 'mostly', parent: 'Independent', certified: 'Leaping Bunny', featured: false, href: '/brands/is-glossier-cruelty-free' },
+  { name: 'Drunk Elephant', crueltyFree: true, vegan: 'mostly', parent: 'Shiseido', certified: 'Leaping Bunny', featured: false, href: '/brands/is-drunk-elephant-cruelty-free' },
+  { name: 'Kiehl\'s', crueltyFree: false, vegan: 'no', parent: "L'Oréal", certified: '', featured: true, href: '/brands/is-kiehl-s-cruelty-free' },
+  { name: 'Olaplex', crueltyFree: true, vegan: 'yes', parent: 'Independent (public)', certified: 'Leaping Bunny', featured: false, href: '/brands/is-olaplex-vegan' },
+  { name: 'Youth to the People', crueltyFree: true, vegan: 'yes', parent: 'L\'Oréal', certified: 'PETA', featured: false, href: null },
+  { name: 'OSEA', crueltyFree: true, vegan: 'yes', parent: 'Independent', certified: 'PETA, Leaping Bunny', featured: false, href: null },
+  { name: 'Fenty Beauty', crueltyFree: true, vegan: 'mostly', parent: 'LVMH', certified: 'PETA', featured: false, href: null },
+  { name: 'Charlotte Tilbury', crueltyFree: true, vegan: 'mostly', parent: 'Puig', certified: 'Leaping Bunny', featured: false, href: null },
 ];
 
 const recentlyUpdated = [
-  { name: 'The Ordinary', date: 'May 2025', href: '/brands/is-the-ordinary-cruelty-free.html' },
-  { name: 'CeraVe', date: 'April 2025', href: '/brands/is-cerave-cruelty-free.html' },
-  { name: 'Kiehl\'s', date: 'April 2025', href: '/brands/is-kiehl-s-cruelty-free.html' },
+  { name: 'The Ordinary', date: 'June 2026', href: '/brands/is-the-ordinary-cruelty-free' },
+  { name: 'CeraVe', date: 'June 2026', href: '/brands/is-cerave-cruelty-free' },
+  { name: 'Kiehl\'s', date: 'May 2026', href: '/brands/is-kiehl-s-cruelty-free' },
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription} canonical="/brands.html">
+<Layout title={pageTitle} description={pageDescription} canonical="/brands">
   <Navigation />
   <div class="h-16 lg:h-18"></div>
   
@@ -47,12 +48,14 @@ const recentlyUpdated = [
       <div class="max-w-2xl mx-auto text-center">
         <h1 class="text-white mb-4">Cruelty-Free Brand Directory</h1>
         <p class="text-sage-200 text-lg leading-relaxed mb-8">
-          We research every brand's parent company, certifications, and policies so you don't have to. Search 100+ brands and get clear answers.
+          We check the parent company, the certifications, and the China question for every brand we cover — then give you a straight yes or no.
         </p>
         <div class="relative max-w-md mx-auto">
           <input 
             type="text" 
-            placeholder="Search brands..."
+            id="brand-filter"
+            placeholder="Type a brand name..."
+            autocomplete="off"
             class="w-full pl-12 pr-4 py-4 rounded-full bg-white/10 border border-sage-400/30 text-white placeholder:text-sage-300 outline-none focus:bg-white/20 transition-all"
           />
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1/2 -translate-y-1/2 text-sage-300"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -83,8 +86,8 @@ const recentlyUpdated = [
       <div class="mb-12">
         <h2 class="text-center mb-6">Featured Brands</h2>
         <div class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          {featuredBrands.filter(b => b.featured).map(brand => (
-            <a href={`/brands/is-${brand.name.toLowerCase().replace(/[^a-z]/g, '-')}-cruelty-free.html`} class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 block">
+          {featuredBrands.filter(b => b.featured && b.href).map(brand => (
+            <a href={brand.href} class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 block">
               <div class="flex items-center justify-between mb-3">
                 <div class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center font-playfair font-semibold text-stone-700">{brand.name.charAt(0)}</div>
                 <div class="flex items-center gap-2">
@@ -106,9 +109,9 @@ const recentlyUpdated = [
       <!-- All Brands -->
       <div>
         <h2 class="text-center mb-6">All Brands</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="brand-grid">
           {featuredBrands.map(brand => (
-            <a href={`/brands/is-${brand.name.toLowerCase().replace(/[^a-z]/g, '-')}-cruelty-free.html`} class="bg-white rounded-lg p-4 border border-stone-200 hover:border-sage-300 hover:shadow-sm transition-all flex items-center justify-between group">
+            <a href={brand.href || '/contact'} data-brand={brand.name.toLowerCase()} title={brand.href ? undefined : 'Full review coming soon — ask us about this brand'} class="bg-white rounded-lg p-4 border border-stone-200 hover:border-sage-300 hover:shadow-sm transition-all flex items-center justify-between group">
               <div>
                 <h4 class="font-medium text-stone-900 group-hover:text-sage-600 transition-colors">{brand.name}</h4>
                 <p class="text-xs text-stone-500">{brand.vegan === 'yes' ? '100% Vegan' : brand.vegan === 'mostly' ? 'Mostly Vegan' : 'Not Vegan'}</p>
@@ -117,6 +120,9 @@ const recentlyUpdated = [
             </a>
           ))}
         </div>
+        <p id="brand-no-results" class="hidden text-center text-stone-500 text-sm mt-6">
+          We have not covered that brand yet. <a href="/contact" class="text-sage-600 underline">Request a brand investigation</a> and we will add it to the queue.
+        </p>
       </div>
       
       <!-- Recently Updated -->
@@ -137,3 +143,19 @@ const recentlyUpdated = [
   <NewsletterForm variant="section" />
   <Footer />
 </Layout>
+
+<script>
+  const filter = document.getElementById('brand-filter') as HTMLInputElement | null;
+  const grid = document.getElementById('brand-grid');
+  const noResults = document.getElementById('brand-no-results');
+  filter?.addEventListener('input', () => {
+    const q = filter.value.trim().toLowerCase();
+    let visible = 0;
+    grid?.querySelectorAll<HTMLElement>('[data-brand]').forEach(card => {
+      const show = !q || (card.dataset.brand || '').includes(q);
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    noResults?.classList.toggle('hidden', visible > 0);
+  });
+</script>

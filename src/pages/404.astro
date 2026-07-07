@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = 'Page Not Found | Beautiful Vegan';
+const pageDescription = 'That page has gone the way of animal-tested mascara. Browse our reviews, guides, and brand directory instead.';
+
+const popular = [
+  { label: 'Best Vegan Moisturizers', href: '/reviews/skincare/best-vegan-moisturizers-2025' },
+  { label: 'Is The Ordinary Cruelty-Free?', href: '/brands/is-the-ordinary-cruelty-free' },
+  { label: "Beginner's Guide to Cruelty-Free Beauty", href: '/guides/beginners-guide-cruelty-free-beauty' },
+  { label: 'Ingredient Library', href: '/ingredients' },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} noindex={true}>
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+
+  <section class="bg-stone-50 section-padding min-h-[60vh] flex items-center">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <p class="font-playfair text-7xl lg:text-8xl font-semibold text-sage-300 mb-4">404</p>
+      <h1 class="font-playfair text-2xl lg:text-3xl font-medium mb-3">This page has been discontinued</h1>
+      <p class="text-stone-500 mb-8 max-w-md mx-auto">Like all the best products, apparently. The page may have moved — try the search, or start with one of these.</p>
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        {popular.map(p => (
+          <a href={p.href} class="bg-white border border-stone-200 hover:border-sage-300 rounded-full px-5 py-2.5 text-sm text-stone-700 hover:text-sage-700 transition-colors">{p.label}</a>
+        ))}
+      </div>
+      <a href="/" class="btn-primary">Back to Homepage</a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

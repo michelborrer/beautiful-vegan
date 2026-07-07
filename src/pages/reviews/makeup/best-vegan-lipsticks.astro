@@ -11,8 +11,8 @@ const title = 'The Best Vegan Lipsticks That Actually Last All Day | Beautiful V
 const description = 'Tired of reapplying your lipstick every hour? These 6 vegan formulas stay put through coffee, lunch, and everything in between.';
 
 const breadcrumbItems = [
-  { label: 'Reviews', href: '/reviews/makeup.html' },
-  { label: 'Makeup', href: '/reviews/makeup.html' },
+  { label: 'Reviews', href: '/reviews/makeup' },
+  { label: 'Makeup', href: '/reviews/makeup' },
   { label: 'Best Lipsticks' },
 ];
 
@@ -40,7 +40,7 @@ const schema = {
   author: { '@type': 'Person', name: 'Casey Bloom' },
   publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
   datePublished: '2025-05-10',
-  dateModified: '2025-05-10',
+  dateModified: '2026-06-18',
   mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/reviews/makeup/best-vegan-lipsticks' },
 };
 
@@ -61,7 +61,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description} image="/images/articles/lipstick-flatlay.jpg" type="article" canonical="/reviews/makeup/best-vegan-lipsticks" schema={schema} publishDate="2025-05-10" modifiedDate="2025-05-10" author="Casey Bloom">
+<Layout title={title} description={description} image="/images/articles/lipstick-flatlay.jpg" type="article" canonical="/reviews/makeup/best-vegan-lipsticks" schema={schema} publishDate="2025-05-10" modifiedDate="2026-06-18" author="Casey Bloom">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Navigation />
@@ -73,8 +73,8 @@ const faqSchema = {
       <span class="tag-rose mb-4 inline-block">Makeup</span>
       <h1 class="mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">The Best Vegan Lipsticks That Actually Last All Day</h1>
       <div class="flex flex-wrap items-center gap-3 text-sm text-stone-500">
-        <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 text-xs font-semibold">LR</div><span>By <strong class="text-stone-700">Casey Bloom</strong></span></div>
-        <span class="text-stone-300">|</span><span>May 10, 2025</span><span class="text-stone-300">|</span><span>8 min read</span>
+        <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 text-xs font-semibold">CB</div><span>By <strong class="text-stone-700">Casey Bloom</strong></span></div>
+        <span class="text-stone-300">|</span><span>Updated June 18, 2026</span><span class="text-stone-300">|</span><span>8 min read</span>
       </div>
     </div>
   </header>

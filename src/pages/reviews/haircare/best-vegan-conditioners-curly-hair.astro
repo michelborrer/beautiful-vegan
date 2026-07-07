@@ -11,8 +11,8 @@ const title = '5 Best Vegan Conditioners for Curly Hair | Beautiful Vegan';
 const description = 'Hydrating, curl-defining conditioners that deliver moisture and bounce without silicones, sulfates, or animal-derived ingredients.';
 
 const breadcrumbItems = [
-  { label: 'Reviews', href: '/reviews/haircare.html' },
-  { label: 'Haircare', href: '/reviews/haircare.html' },
+  { label: 'Reviews', href: '/reviews/haircare' },
+  { label: 'Haircare', href: '/reviews/haircare' },
   { label: 'Vegan Conditioners for Curly Hair' },
 ];
 
@@ -21,7 +21,7 @@ const products = [
   { rank: 2, name: 'Curl Quench + Coconut Oil Conditioner', brand: 'Maui Moisture', price: '$8.69', rating: '4.3', bestFor: 'Best Budget', pros: ['Aloe juice base hydrates deeply', 'Coconut oil smooths cuticles', 'Lightweight enough for fine curls', 'Under $9 for a large bottle'], cons: ['Scent is strong and tropical', 'Not rich enough for very coarse 4C hair'], verdict: 'The best budget vegan conditioner for loose to medium curls. The aloe juice base is genuinely hydrating — our testers noticed their curls stayed moisturized for 2-3 days between washes. It is lightweight enough for fine curly hair that gets weighed down easily, though our 4C testers needed something richer. At under $9 for a generous bottle, it is unbeatable value.' },
   { rank: 3, name: 'Pineapple Curls Curl Defining Conditioner', brand: 'Pacifica', price: '$12.00', rating: '4.2', bestFor: 'Best Clean Formula', pros: ['100% vegan and cruelty-free', 'Quinoa protein strengthens curls', 'No sulfates, silicones, or parabens', 'Tropical pineapple scent'], cons: ['Quinoa protein can feel crunchy if overused', 'Medium moisture — not for very dry hair'], verdict: 'The best clean vegan conditioner for curly hair. Pacifica uses quinoa protein — a plant-based alternative to hydrolyzed keratin — that actually strengthens curl pattern over time. Our protein-sensitive testers had no issues with crunchiness when used weekly rather than daily. The pineapple scent is refreshing, and the formula is genuinely clean from top to bottom.' },
   { rank: 4, name: 'Curl Charisma Rice Amino + Avocado Conditioner', brand: 'Briogeo', price: '$26.00', rating: '4.4', bestFor: 'Best for Frizz Control', pros: ['Rice amino acids seal the cuticle', 'Avocado oil provides deep moisture', 'Tomato fruit ferment enhances curl pattern', 'No sulfates, silicones, or parabens'], cons: ['Premium price at $26', 'Bottle is smaller than drugstore options'], verdict: 'If frizz is your main battle, this is your weapon. The rice amino acids smooth the hair cuticle on a microscopic level, creating a surface that reflects light and resists humidity. Our testers in humid climates reported 60% less frizz compared to their usual conditioners. The avocado oil delivers the deep moisture that curls crave. It is expensive, but a little goes a long way.' },
-  { rank: 5, name: 'Coconut CoWash', brand: 'As I Am', price: '$8.29', rating: '4.1', bestFor: 'Best Co-Wash', pros: ['Cleanses and conditions in one step', 'Castor oil promotes healthy growth', 'Tangle-free slip for easy detangling', 'Ideal for frequent washers'], cons: ['Not a traditional conditioner — lighter moisture', 'May not cleanse heavy product buildup'], verdict: 'For curlies who wash frequently, co-washing is a game-changer. As I Am Coconut CoWash gently cleanses scalp and hair while depositing moisture — no suds, no stripping. Our testers who work out daily loved being able to refresh their hair without the dryness that comes from frequent shampooing. The tangle-free slip makes detangling a breeze. Use as a between-wash refresher or as your primary cleanser if you have dry curls.' },
+  { rank: 5, name: 'Coconut CoWash', brand: 'As I Am', price: '$8.29', rating: '4.1', bestFor: 'Best Co-Wash', pros: ['Cleanses and conditions in one step', 'Castor oil promotes healthy growth', 'Tangle-free slip for easy detangling', 'Ideal for frequent washers'], cons: ['Not a traditional conditioner — lighter moisture', 'May not cleanse heavy product buildup'], verdict: 'If you wash often, co-washing solves the problem shampoo creates. As I Am Coconut CoWash gently cleanses scalp and hair while depositing moisture — no suds, no stripping. Our testers who work out daily loved being able to refresh their hair without the post-shampoo straw feeling, and the slip is generous enough to finger-detangle in the shower. Use it between wash days, or as your main cleanser if your curls run dry.' },
 ];
 
 const faqQuestions = [
@@ -38,8 +38,8 @@ const schema = {
   author: { '@type': 'Person', name: 'Casey Bloom' },
   publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
   datePublished: '2025-05-10',
-  dateModified: '2025-05-10',
-  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/reviews/haircare/best-vegan-conditioners-curly-hair.html' },
+  dateModified: '2026-06-18',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/reviews/haircare/best-vegan-conditioners-curly-hair' },
 };
 
 const faqSchema = {
@@ -49,7 +49,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description} canonical="/reviews/haircare/best-vegan-conditioners-curly-hair.html" schema={schema} author="Casey Bloom" image="/images/articles/curly-conditioner-review.jpg">
+<Layout title={title} description={description} canonical="/reviews/haircare/best-vegan-conditioners-curly-hair" schema={schema} author="Casey Bloom" image="/images/articles/curly-conditioner-review.jpg">
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Navigation />
   <div class="h-16 lg:h-18"></div>
@@ -60,7 +60,7 @@ const faqSchema = {
       <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">5 Best Vegan Conditioners for Curly Hair</h1>
       <p class="text-sage-200 text-lg leading-relaxed max-w-xl mx-auto">Moisture, definition, and bounce without silicones</p>
       <div class="flex items-center justify-center gap-3 mt-4 text-white/70 text-sm">
-        <span>By <strong class="text-white">Casey Bloom</strong></span><span>&middot;</span><span>May 10, 2025</span><span>&middot;</span><span>10 min read</span>
+        <span>By <strong class="text-white">Casey Bloom</strong></span><span>&middot;</span><span>Updated June 18, 2026</span><span>&middot;</span><span>10 min read</span>
       </div>
     </div>
   </section>

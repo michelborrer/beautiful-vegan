@@ -6,11 +6,11 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import AffiliateButton from '../../components/AffiliateButton.astro';
 import NewsletterForm from '../../components/NewsletterForm.astro';
 
-const title = 'Is The Ordinary Cruelty-Free in 2025? | Beautiful Vegan';
+const title = 'Is The Ordinary Cruelty-Free in 2026? | Beautiful Vegan';
 const description = 'The Ordinary is beloved for affordable skincare, but is it truly cruelty-free? We investigate parent company Estée Lauder, certifications, and what it means for you.';
 
 const breadcrumbItems = [
-  { label: 'Brands', href: '/brands.html' },
+  { label: 'Brands', href: '/brands' },
   { label: 'The Ordinary' },
 ];
 
@@ -40,12 +40,12 @@ const faqQuestions = [
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: 'Is The Ordinary Cruelty-Free in 2025?',
+  headline: 'Is The Ordinary Cruelty-Free in 2026?',
   description,
   author: { '@type': 'Person', name: 'Casey Bloom' },
   publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
   datePublished: '2025-04-28',
-  dateModified: '2025-05-15',
+  dateModified: '2026-06-18',
   mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/brands/is-the-ordinary-cruelty-free' },
 };
 
@@ -66,7 +66,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<Layout title={title} description={description} canonical="/brands/is-the-ordinary-cruelty-free" schema={schema} publishDate="2025-04-28" modifiedDate="2025-05-15" author="Casey Bloom" image="/images/articles/ordinary-brand.jpg">
+<Layout title={title} description={description} canonical="/brands/is-the-ordinary-cruelty-free" schema={schema} publishDate="2025-04-28" modifiedDate="2026-06-18" author="Casey Bloom" image="/images/articles/ordinary-brand.jpg">
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <Navigation />

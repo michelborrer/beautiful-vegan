@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const pageTitle = 'Ingredient Library: Vegan Skincare Ingredients Explained | Beautiful Vegan';
+const pageDescription = 'What each skincare ingredient actually does, where it comes from, and whether the vegan version holds up. Plain-English science, no fear-mongering.';
+
+const breadcrumbItems = [{ label: 'Ingredients' }];
+
+const ingredients = [
+  {
+    name: 'Avocado Oil',
+    href: '/ingredients/avocado-for-skin',
+    goodFor: 'Dry skin, barrier repair',
+    summary: 'Fatty acids and sterols that help skin hold onto moisture. Our most-read ingredient deep dive.',
+    featured: true,
+  },
+  {
+    name: 'Niacinamide',
+    href: '/ingredients/niacinamide-benefits',
+    goodFor: 'Redness, pores, oil control',
+    summary: 'Vitamin B3, always synthetic and always vegan. One of the few actives with research to back nearly every claim.',
+    featured: true,
+  },
+  {
+    name: 'Hyaluronic Acid',
+    href: '/ingredients/hyaluronic-acid-vegan-source',
+    goodFor: 'Hydration, plumping',
+    summary: 'Once extracted from rooster combs — today the good stuff is fermented from plants. How to tell which one is in your serum.',
+    featured: true,
+  },
+  {
+    name: 'Aloe Vera',
+    href: '/ingredients/aloe-vera-skin-benefits',
+    goodFor: 'Soothing, after-sun',
+    summary: 'More than a sunburn remedy, but only if the formula uses enough of it. What concentration actually matters.',
+  },
+  {
+    name: 'Jojoba Oil',
+    href: '/ingredients/jojoba-oil-benefits',
+    goodFor: 'Balancing, all skin types',
+    summary: 'Technically a wax ester that mimics your skin\'s own sebum, which is why it rarely breaks anyone out.',
+  },
+  {
+    name: 'Shea Butter',
+    href: '/ingredients/shea-butter-benefits',
+    goodFor: 'Very dry skin, body care',
+    summary: 'A rich occlusive that seals moisture in. Great in body care, heavier than most faces need.',
+  },
+  {
+    name: 'Coconut Oil',
+    href: '/ingredients/coconut-oil-skin',
+    goodFor: 'Body, hair — not faces',
+    summary: 'The internet\'s favorite cure-all is comedogenic for many people. Where it helps and where it hurts.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Ingredient Library',
+  description: pageDescription,
+  url: 'https://beautiful-vegan.com/ingredients',
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonical="/ingredients" schema={schema}>
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+
+  <div class="bg-stone-50">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-sage-900 py-16 lg:py-24">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Ingredient Library</h1>
+        <p class="text-sage-200 text-lg leading-relaxed">
+          What each ingredient actually does, where it comes from, and whether the vegan version holds up. Plain-English science — no fear-mongering, no miracle claims.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-stone-50 section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <!-- Featured -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        {ingredients.filter(i => i.featured).map(ing => (
+          <a href={ing.href} class="bg-white rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 block group">
+            <span class="text-xs font-medium text-sage-600 bg-sage-50 px-2.5 py-1 rounded-full">{ing.goodFor}</span>
+            <h3 class="font-playfair text-xl lg:text-2xl font-medium mt-4 mb-3 group-hover:text-sage-600 transition-colors">{ing.name}</h3>
+            <p class="text-stone-500 text-sm leading-relaxed">{ing.summary}</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-sage-600 mt-4">
+              Read the science
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <!-- All ingredients -->
+      <h2 class="mb-6">All Ingredients</h2>
+      <div class="space-y-4">
+        {ingredients.map(ing => (
+          <a href={ing.href} class="bg-white rounded-lg p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:shadow-sm transition-all border border-stone-100 hover:border-sage-200">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-medium text-sage-600 bg-sage-50 px-2 py-0.5 rounded-full">{ing.goodFor}</span>
+              </div>
+              <h4 class="font-medium text-stone-900">{ing.name}</h4>
+              <p class="text-sm text-stone-500 mt-1">{ing.summary}</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-300 shrink-0 hidden sm:block"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-12 bg-white rounded-xl p-6 lg:p-8 border border-stone-100 text-center">
+        <h3 class="font-playfair text-xl font-medium mb-2">Curious about an ingredient we have not covered?</h3>
+        <p class="text-stone-500 text-sm mb-4 max-w-md mx-auto">Reader requests decide what we research next. Tell us what is on your label and we will decode it.</p>
+        <a href="/contact" class="btn-secondary">Request an Ingredient Guide</a>
+      </div>
+    </div>
+  </section>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

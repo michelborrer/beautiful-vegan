@@ -11,8 +11,8 @@ const title = '6 Best Vegan Mascaras for Dramatic Lashes | Beautiful Vegan';
 const description = 'We tested 15 vegan mascaras to find the ones that deliver volume, length, and lasting power without smudging. Here are our top 6 picks.';
 
 const breadcrumbItems = [
-  { label: 'Reviews', href: '/reviews/makeup.html' },
-  { label: 'Makeup', href: '/reviews/makeup.html' },
+  { label: 'Reviews', href: '/reviews/makeup' },
+  { label: 'Makeup', href: '/reviews/makeup' },
   { label: 'Best Vegan Mascaras' },
 ];
 
@@ -40,8 +40,8 @@ const schema = {
   author: { '@type': 'Person', name: 'Casey Bloom' },
   publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
   datePublished: '2025-05-10',
-  dateModified: '2025-05-10',
-  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/reviews/makeup/best-vegan-mascaras.html' },
+  dateModified: '2026-06-18',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/reviews/makeup/best-vegan-mascaras' },
 };
 
 const breadcrumbSchema = {
@@ -49,7 +49,7 @@ const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://beautiful-vegan.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Makeup', item: 'https://beautiful-vegan.com/reviews/makeup.html' },
+    { '@type': 'ListItem', position: 2, name: 'Makeup', item: 'https://beautiful-vegan.com/reviews/makeup' },
     { '@type': 'ListItem', position: 3, name: 'Best Vegan Mascaras' },
   ],
 };
@@ -61,7 +61,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description} image="/images/articles/mascara-review.jpg" type="article" canonical="/reviews/makeup/best-vegan-mascaras.html" schema={schema} publishDate="2025-05-10" modifiedDate="2025-05-10" author="Casey Bloom">
+<Layout title={title} description={description} image="/images/articles/mascara-review.jpg" type="article" canonical="/reviews/makeup/best-vegan-mascaras" schema={schema} publishDate="2025-05-10" modifiedDate="2026-06-18" author="Casey Bloom">
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Navigation />
@@ -73,8 +73,8 @@ const faqSchema = {
       <span class="tag-rose mb-4 inline-block">Makeup</span>
       <h1 class="mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">6 Best Vegan Mascaras for Dramatic Lashes</h1>
       <div class="flex flex-wrap items-center gap-3 text-sm text-stone-500">
-        <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 text-xs font-semibold">LR</div><span>By <strong class="text-stone-700">Casey Bloom</strong></span></div>
-        <span class="text-stone-300">|</span><span>May 10, 2025</span><span class="text-stone-300">|</span><span>10 min read</span>
+        <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 text-xs font-semibold">CB</div><span>By <strong class="text-stone-700">Casey Bloom</strong></span></div>
+        <span class="text-stone-300">|</span><span>Updated June 18, 2026</span><span class="text-stone-300">|</span><span>10 min read</span>
       </div>
     </div>
   </header>

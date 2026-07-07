@@ -10,7 +10,7 @@ const title = 'Beginner\'s Guide to Cruelty-Free Beauty | Beautiful Vegan';
 const description = 'Everything you need to know to start your cruelty-free beauty journey. Learn to identify ethical products, read labels, and build a clean routine.';
 
 const breadcrumbItems = [
-  { label: 'Guides', href: '/guides.html' },
+  { label: 'Guides', href: '/guides' },
   { label: 'Beginner\'s Guide to Cruelty-Free Beauty' },
 ];
 
@@ -24,8 +24,8 @@ const schema = {
   author: { '@type': 'Person', name: 'Casey Bloom' },
   publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
   datePublished: '2025-05-01',
-  dateModified: '2025-05-15',
-  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/guides/beginners-guide-cruelty-free-beauty.html' },
+  dateModified: '2026-06-18',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/guides/beginners-guide-cruelty-free-beauty' },
 };
 
 const faqSchema = {
@@ -35,7 +35,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description} canonical="/guides/beginners-guide-cruelty-free-beauty.html" schema={schema} author="Casey Bloom" image="/images/hero-homepage.jpg">
+<Layout title={title} description={description} canonical="/guides/beginners-guide-cruelty-free-beauty" schema={schema} author="Casey Bloom" image="/images/hero-homepage.jpg">
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Navigation />
   <div class="h-16 lg:h-18"></div>

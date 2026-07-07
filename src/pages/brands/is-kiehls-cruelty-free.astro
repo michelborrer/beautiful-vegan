@@ -5,11 +5,11 @@ import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import NewsletterForm from '../../components/NewsletterForm.astro';
 
-const title = 'Is Kiehl\'s Cruelty-Free? 2025 Update | Beautiful Vegan';
-const description = 'Kiehl\'s has been a skincare staple for decades. But is it cruelty-free in 2025? We break down the facts.';
+const title = 'Is Kiehl\'s Cruelty-Free? 2026 Update | Beautiful Vegan';
+const description = 'Kiehl\'s has been a skincare staple for decades. But is it cruelty-free in 2026? We break down the facts.';
 
 const breadcrumbItems = [
-  { label: 'Brands', href: '/brands.html' },
+  { label: 'Brands', href: '/brands' },
   { label: 'Kiehl\'s' },
 ];
 
@@ -24,7 +24,7 @@ const schema = {
   author: { '@type': 'Person', name: 'Casey Bloom' },
   publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
   datePublished: '2025-05-01',
-  dateModified: '2025-05-15',
+  dateModified: '2026-06-18',
   mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/brands/is-kiehls-cruelty-free' },
 };
 
@@ -35,7 +35,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description} canonical="/brands/is-kiehls-cruelty-free" schema={schema} author="Casey Bloom" image="/images/category-skincare.jpg">
+<Layout title={title} description={description} canonical="/brands/is-kiehl-s-cruelty-free" schema={schema} author="Casey Bloom" image="/images/category-skincare.jpg">
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Navigation />
   <div class="h-16 lg:h-18"></div>

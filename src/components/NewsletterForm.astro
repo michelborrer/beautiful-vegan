@@ -4,16 +4,21 @@ export interface Props {
 }
 
 const { variant = 'inline' } = Astro.props;
+
+// TODO: create a free form at https://formspree.io and replace this ID to activate signups.
+// Until then the form shows a friendly notice instead of silently failing.
+const FORM_ACTION = 'https://formspree.io/f/YOUR_FORM_ID';
+const formConfigured = !FORM_ACTION.includes('YOUR_FORM_ID');
 ---
 
 {variant === 'section' ? (
   <section class="bg-stone-100 section-padding">
     <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-playfair text-3xl lg:text-4xl font-medium mb-4">Get the Best Vegan Beauty Tips</h2>
+      <h2 class="font-playfair text-3xl lg:text-4xl font-medium mb-4">The Weekly Glow-Up</h2>
       <p class="text-stone-600 mb-8 max-w-lg mx-auto">
-        Join 5,000+ readers getting weekly cruelty-free product picks and ingredient guides.
+        One email a week: what we tested, what surprised us, and the one product actually worth your money. No spam, no fluff.
       </p>
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form class="newsletter-form flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action={FORM_ACTION} method="POST" data-configured={formConfigured}>
         <input type="hidden" name="_subject" value="New Beautiful Vegan subscriber" />
         <input 
           type="email" 
@@ -24,19 +29,38 @@ const { variant = 'inline' } = Astro.props;
         />
         <button type="submit" class="btn-primary whitespace-nowrap">Subscribe</button>
       </form>
-      <p class="text-xs text-stone-400 mt-4">No spam. Unsubscribe anytime.</p>
+      <p class="newsletter-note text-xs text-stone-400 mt-4">Unsubscribe anytime. We never share your email.</p>
     </div>
   </section>
 ) : (
-  <form class="flex flex-col sm:flex-row gap-3 w-full" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <input type="hidden" name="_subject" value="New Beautiful Vegan subscriber" />
-    <input 
-      type="email" 
-      name="email"
-      placeholder="Enter your email"
-      required
-      class="flex-1 px-5 py-3 rounded-full border border-stone-300 bg-white text-stone-900 placeholder:text-stone-400 outline-none focus:border-sage-400 focus:ring-2 focus:ring-sage-200 transition-all"
-    />
-    <button type="submit" class="btn-primary whitespace-nowrap py-3 px-6">Subscribe</button>
-  </form>
+  <div>
+    <form class="newsletter-form flex flex-col sm:flex-row gap-3 w-full" action={FORM_ACTION} method="POST" data-configured={formConfigured}>
+      <input type="hidden" name="_subject" value="New Beautiful Vegan subscriber" />
+      <input 
+        type="email" 
+        name="email"
+        placeholder="Enter your email"
+        required
+        class="flex-1 px-5 py-3 rounded-full border border-stone-300 bg-white text-stone-900 placeholder:text-stone-400 outline-none focus:border-sage-400 focus:ring-2 focus:ring-sage-200 transition-all"
+      />
+      <button type="submit" class="btn-primary whitespace-nowrap py-3 px-6">Subscribe</button>
+    </form>
+    <p class="newsletter-note hidden"></p>
+  </div>
 )}
+
+<script>
+  // Graceful fallback while the form backend is not configured
+  document.querySelectorAll<HTMLFormElement>('.newsletter-form').forEach(form => {
+    if (form.dataset.configured === 'true') return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const note = form.parentElement?.querySelector('.newsletter-note');
+      if (note) {
+        note.textContent = 'Signups open soon — email hello@beautiful-vegan.com and we will add you to the first list.';
+        note.classList.remove('hidden', 'text-stone-400');
+        note.classList.add('text-sage-700', 'text-sm', 'mt-4');
+      }
+    });
+  });
+</script>

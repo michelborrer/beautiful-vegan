@@ -26,7 +26,10 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://beautiful-vegan.com';
-const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+// Clean URLs: Cloudflare serves /about for about.html, so canonicals never use .html
+const rawPath = canonical || Astro.url.pathname;
+const cleanPath = rawPath.replace(/\.html$/, '').replace(/\/index$/, '/');
+const canonicalUrl = `${siteUrl}${cleanPath}`;
 const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
 // Organization schema only (no duplicate WebSite)
@@ -52,8 +55,9 @@ const orgSchema = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <meta name="author" content={author || 'Casey Bloom'} />
-  {publishDate && <meta name="publishDate" content={publishDate} />}
-  {modifiedDate && <meta name="modifiedDate" content={modifiedDate} />}
+  {publishDate && <meta property="article:published_time" content={publishDate} />}
+  {modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+  {type === 'article' && <meta property="article:author" content={author || 'Casey Bloom'} />}
   
   {noindex ? (
     <meta name="robots" content="noindex, nofollow" />
@@ -63,6 +67,7 @@ const orgSchema = {
   
   <link rel="canonical" href={canonicalUrl} />
   <link rel="sitemap" href={`${siteUrl}/sitemap-index.xml`} type="application/xml" />
+  <link rel="alternate" type="application/rss+xml" title="Beautiful Vegan" href={`${siteUrl}/rss.xml`} />
   
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />

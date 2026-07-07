@@ -1,14 +1,16 @@
 ---
+import { searchIndex } from '../data/searchIndex';
+
 const navLinks = [
-  { label: 'Skincare', href: '/reviews/skincare.html' },
-  { label: 'Makeup', href: '/reviews/makeup.html' },
-  { label: 'Haircare', href: '/reviews/haircare.html' },
-  { label: 'Ingredients', href: '/ingredients/avocado-for-skin.html' },
-  { label: 'Brands', href: '/brands.html' },
-  { label: 'Guides', href: '/guides.html' },
+  { label: 'Skincare', href: '/reviews/skincare' },
+  { label: 'Makeup', href: '/reviews/makeup' },
+  { label: 'Haircare', href: '/reviews/haircare' },
+  { label: 'Ingredients', href: '/ingredients' },
+  { label: 'Brands', href: '/brands' },
+  { label: 'Guides', href: '/guides' },
 ];
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\.html$/, '');
 ---
 
 <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -20,7 +22,7 @@ const currentPath = Astro.url.pathname;
       
       <div class="hidden lg:flex items-center gap-8">
         {navLinks.map(link => (
-          <a href={link.href} class={`text-sm font-medium transition-colors duration-200 ${currentPath === link.href || currentPath.startsWith(link.href.replace('.html', '/')) ? 'text-sage-600' : 'text-stone-600 hover:text-sage-600'}`}>{link.label}</a>
+          <a href={link.href} class={`text-sm font-medium transition-colors duration-200 ${currentPath === link.href || currentPath.startsWith(link.href.replace('', '/')) ? 'text-sage-600' : 'text-stone-600 hover:text-sage-600'}`}>{link.label}</a>
         ))}
       </div>
       
@@ -28,7 +30,7 @@ const currentPath = Astro.url.pathname;
         <button id="search-toggle" class="p-2 text-stone-600 hover:text-sage-600 transition-colors" aria-label="Search">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         </button>
-        <a href="/newsletter.html" class="btn-primary text-sm py-2.5 px-5">Newsletter</a>
+        <a href="/newsletter" class="btn-primary text-sm py-2.5 px-5">Newsletter</a>
       </div>
       
       <button id="mobile-menu-btn" class="lg:hidden p-2 text-stone-700" aria-label="Toggle menu">
@@ -44,7 +46,7 @@ const currentPath = Astro.url.pathname;
         <a href={link.href} class="block py-3 px-4 text-stone-700 font-medium hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-colors">{link.label}</a>
       ))}
       <div class="pt-4 border-t border-stone-200 mt-4">
-        <a href="/newsletter.html" class="btn-primary w-full text-center">Subscribe to Newsletter</a>
+        <a href="/newsletter" class="btn-primary w-full text-center">Subscribe to Newsletter</a>
       </div>
     </div>
   </div>
@@ -54,14 +56,17 @@ const currentPath = Astro.url.pathname;
   <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl mx-4 p-6">
     <div class="flex items-center gap-3 border-b border-stone-200 pb-4">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <input type="text" id="search-input" placeholder="Search articles, ingredients, brands..." class="flex-1 text-lg outline-none text-stone-900 placeholder:text-stone-400" />
-      <button id="search-close" class="text-stone-400 hover:text-stone-600">
+      <input type="text" id="search-input" placeholder="Search reviews, ingredients, brands..." autocomplete="off" class="flex-1 text-lg outline-none text-stone-900 placeholder:text-stone-400" />
+      <button id="search-close" class="text-stone-400 hover:text-stone-600" aria-label="Close search">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
     </div>
-    <div class="pt-4 text-sm text-stone-500"><p>Press <kbd class="px-2 py-1 bg-stone-100 rounded text-xs">ESC</kbd> to close</p></div>
+    <ul id="search-results" class="divide-y divide-stone-100 max-h-80 overflow-y-auto"></ul>
+    <div id="search-hint" class="pt-4 text-sm text-stone-500"><p>Try &ldquo;moisturizer&rdquo;, &ldquo;niacinamide&rdquo;, or a brand name. Press <kbd class="px-2 py-1 bg-stone-100 rounded text-xs">ESC</kbd> to close.</p></div>
   </div>
 </div>
+
+<script type="application/json" id="search-data" set:html={JSON.stringify(searchIndex)} />
 
 <script>
   const nav = document.getElementById('main-nav');
@@ -89,10 +94,48 @@ const currentPath = Astro.url.pathname;
   const searchToggle = document.getElementById('search-toggle');
   const searchOverlay = document.getElementById('search-overlay');
   const searchClose = document.getElementById('search-close');
-  const searchInput = document.getElementById('search-input');
-  searchToggle?.addEventListener('click', () => { searchOverlay?.classList.remove('hidden'); searchOverlay?.classList.add('flex'); setTimeout(() => searchInput?.focus(), 100); });
+  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+  const searchResults = document.getElementById('search-results');
+  const searchHint = document.getElementById('search-hint');
+  const searchData: Array<{ title: string; url: string; category: string; keywords?: string }> =
+    JSON.parse(document.getElementById('search-data')?.textContent || '[]');
+
+  const openSearch = () => { searchOverlay?.classList.remove('hidden'); searchOverlay?.classList.add('flex'); setTimeout(() => searchInput?.focus(), 100); };
   const closeSearch = () => { searchOverlay?.classList.add('hidden'); searchOverlay?.classList.remove('flex'); };
+  searchToggle?.addEventListener('click', openSearch);
   searchClose?.addEventListener('click', closeSearch);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSearch(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSearch();
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+  });
   searchOverlay?.addEventListener('click', (e) => { if (e.target === searchOverlay) closeSearch(); });
+
+  searchInput?.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    if (!searchResults || !searchHint) return;
+    if (q.length < 2) { searchResults.innerHTML = ''; searchHint.classList.remove('hidden'); return; }
+    searchHint.classList.add('hidden');
+    const terms = q.split(/\s+/);
+    const matches = searchData
+      .map(entry => {
+        const haystack = `${entry.title} ${entry.category} ${entry.keywords || ''}`.toLowerCase();
+        const hits = terms.filter(t => haystack.includes(t)).length;
+        // Require every term to match; boost title matches for relevance
+        const score = hits === terms.length ? hits + (entry.title.toLowerCase().includes(q) ? 2 : 0) : 0;
+        return { entry, score };
+      })
+      .filter(m => m.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8);
+    if (matches.length === 0) {
+      searchResults.innerHTML = '<li class="py-4 text-sm text-stone-500">No results. Try a product type (moisturizer, mascara) or brand name.</li>';
+      return;
+    }
+    searchResults.innerHTML = matches.map(({ entry }) =>
+      `<li><a href="${entry.url}" class="flex items-center justify-between gap-3 py-3 px-1 hover:bg-stone-50 rounded-lg transition-colors">
+        <span class="text-stone-800 text-sm font-medium">${entry.title}</span>
+        <span class="text-xs text-sage-600 bg-sage-50 px-2 py-0.5 rounded-full shrink-0">${entry.category}</span>
+      </a></li>`
+    ).join('');
+  });
 </script>

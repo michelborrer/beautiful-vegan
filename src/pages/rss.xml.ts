@@ -6,7 +6,7 @@ export const GET: APIRoute = () => {
 
   const items = [
     {
-      title: '7 Best Vegan Moisturizers for Every Skin Type in 2025',
+      title: '7 Best Vegan Moisturizers for Every Skin Type in 2026',
       link: `${siteUrl}/reviews/skincare/best-vegan-moisturizers-2025`,
       description: 'We tested 23 vegan moisturizers over 8 weeks. These 7 actually delivered on their promises — from budget drugstore picks to luxury splurges.',
       pubDate: 'Mon, 15 May 2025 00:00:00 GMT',
@@ -27,7 +27,7 @@ export const GET: APIRoute = () => {
       category: 'Haircare',
     },
     {
-      title: 'Is The Ordinary Cruelty-Free in 2025? The Full Breakdown',
+      title: 'Is The Ordinary Cruelty-Free in 2026? The Full Breakdown',
       link: `${siteUrl}/brands/is-the-ordinary-cruelty-free`,
       description: 'The Ordinary is beloved by skincare enthusiasts, but is it truly cruelty-free? We dig into parent company policies, certifications, and what actually matters.',
       pubDate: 'Mon, 28 Apr 2025 00:00:00 GMT',
@@ -70,7 +70,7 @@ export const GET: APIRoute = () => {
       <guid isPermaLink="true">${item.link}</guid>
       <description>${escapeXml(item.description)}</description>
       <pubDate>${item.pubDate}</pubDate>
-      <dc:creator>Lyn Rose</dc:creator>
+      <dc:creator>Casey Bloom</dc:creator>
       <category>${item.category}</category>
     </item>`).join('')}
   </channel>

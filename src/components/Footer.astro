@@ -3,29 +3,26 @@ const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   about: [
-    { label: 'Our Story', href: '/about.html' },
-    { label: 'Contact', href: '/contact.html' },
-    { label: 'Newsletter', href: '/newsletter.html' },
+    { label: 'Our Story', href: '/about' },
+    { label: 'How We Test', href: '/how-we-test' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Newsletter', href: '/newsletter' },
   ],
   categories: [
-    { label: 'Skincare', href: '/reviews/skincare.html' },
-    { label: 'Makeup', href: '/reviews/makeup.html' },
-    { label: 'Haircare', href: '/reviews/haircare.html' },
-    { label: 'Ingredients', href: '/ingredients/avocado-for-skin.html' },
-    { label: 'Brands', href: '/brands.html' },
-    { label: 'Guides', href: '/guides.html' },
+    { label: 'Skincare', href: '/reviews/skincare' },
+    { label: 'Makeup', href: '/reviews/makeup' },
+    { label: 'Haircare', href: '/reviews/haircare' },
+    { label: 'Ingredients', href: '/ingredients' },
+    { label: 'Brands', href: '/brands' },
+    { label: 'Guides', href: '/guides' },
   ],
   network: [
     { label: 'Vegan Tattoo Studios', href: 'https://vegantattoostudios.com', external: true, desc: 'Find cruelty-free tattoo studios worldwide' },
   ],
   legal: [
-    { label: 'Privacy Policy', href: '/privacy-policy.html' },
-    { label: 'Terms of Use', href: '/privacy-policy.html' },
-    { label: 'Affiliate Disclosure', href: '/privacy-policy.html' },
-  ],
-  connect: [
-    { label: 'Instagram', href: 'https://instagram.com/beautifulvegan', external: true },
-    { label: 'Pinterest', href: 'https://pinterest.com/beautifulvegan', external: true },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms of Use', href: '/privacy-policy#terms' },
+    { label: 'Affiliate Disclosure', href: '/privacy-policy#affiliate-disclosure' },
   ],
 };
 ---
@@ -106,11 +103,14 @@ const footerLinks = {
       
       <!-- Connect -->
       <div>
-        <h4 class="font-playfair text-lg font-semibold text-white mb-5">Follow Us</h4>
-        <p class="text-sm text-sage-400 leading-relaxed mb-4">Coming soon.</p>
-        <p class="mt-6 text-sm text-sage-400 leading-relaxed">
-          Honest reviews of vegan and cruelty-free beauty products. Ethical beauty since 2009.
+        <h4 class="font-playfair text-lg font-semibold text-white mb-5">Stay in Touch</h4>
+        <p class="text-sm text-sage-400 leading-relaxed mb-4">
+          The best way to follow along is the <a href="/newsletter" class="text-sage-300 hover:text-white underline transition-colors">newsletter</a> — one email a week, no fluff.
         </p>
+        <a href="/rss.xml" class="inline-flex items-center gap-2 text-sm text-sage-300 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+          RSS feed
+        </a>
       </div>
     </div>
   </div>

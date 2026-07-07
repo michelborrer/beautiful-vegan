@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const pageTitle = 'How We Test Products | Beautiful Vegan';
+const pageDescription = 'Every product we review goes through the same process: 4+ weeks of real use, multiple skin types, and an ingredient audit. Here is exactly how it works.';
+
+const breadcrumbItems = [{ label: 'How We Test' }];
+
+const steps = [
+  {
+    step: '01',
+    title: 'Verify the ethics first',
+    body: 'Before a product enters testing, we confirm its vegan and cruelty-free status: full ingredient list review, certification check (Leaping Bunny, PETA), and a look at the parent company\'s animal testing policy — including whether it sells in markets that require animal testing. If a brand cannot give us a straight answer, the product does not get reviewed.',
+  },
+  {
+    step: '02',
+    title: 'Use it like a real person',
+    body: 'No overnight verdicts. Skincare gets a minimum of 4 weeks of daily use; makeup gets at least 10 full wear days including a long-wear stress test; haircare gets 6+ wash cycles. Products are worked into normal routines — commutes, gym sessions, bad sleep weeks — because that is how you will use them too.',
+  },
+  {
+    step: '03',
+    title: 'Test across skin and hair types',
+    body: 'One reviewer\'s holy grail is another\'s breakout. Each product is used by at least three testers with different skin types (dry, oily, combination, sensitive) or hair textures. When a product only works for certain types, we say so in the review rather than pretending it is universal.',
+  },
+  {
+    step: '04',
+    title: 'Note what the brand will not tell you',
+    body: 'Does it pill under sunscreen? Does the pump break in week three? Does "unscented" still smell like something? The gaps between marketing copy and daily reality are usually where our most useful findings come from.',
+  },
+  {
+    step: '05',
+    title: 'Score it, then revisit it',
+    body: 'Ratings weigh performance (50%), ingredient quality and transparency (25%), value for money (15%), and packaging/experience (10%). Reviews are living documents: when a formula is reformulated or a brand\'s cruelty-free status changes, we update the review and note the change.',
+  },
+];
+
+const faq = [
+  { q: 'Do brands pay to be reviewed?', a: 'No. We do not accept payment for reviews or allow brands to preview drafts. Some links are affiliate links, which pay us a commission if you buy — but commission rates never decide what we recommend, and we disclose affiliate links on every page that has them.' },
+  { q: 'Do you accept free products (PR samples)?', a: 'Occasionally, and we label them when we do. Most products are purchased at retail with our own money, because packaging, batch quality, and customer experience are part of what we test.' },
+  { q: 'Why do your ratings sometimes disagree with other sites?', a: 'We rate products after weeks of use across multiple skin types, not from a single first impression. A product that feels amazing on day one can score poorly after a month — and vice versa.' },
+  { q: 'Can I request a product or brand investigation?', a: 'Yes — reader requests drive a large share of our editorial calendar. Send us the product or brand through the contact page and we will add it to the queue.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'How We Test Products',
+  description: pageDescription,
+  url: 'https://beautiful-vegan.com/how-we-test',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonical="/how-we-test" schema={schema}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+
+  <div class="bg-stone-50">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-sage-900 py-16 lg:py-24">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <span class="text-sage-300 text-sm font-medium tracking-wide uppercase mb-4 block">Our Methodology</span>
+        <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">How We Test Products</h1>
+        <p class="text-sage-200 text-lg leading-relaxed">
+          Every review on this site follows the same process — whether the product costs $8 or $80, whether the brand sent it or we bought it ourselves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white section-padding">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8">
+      <div class="space-y-10">
+        {steps.map(s => (
+          <div class="flex gap-5 lg:gap-8">
+            <div class="shrink-0">
+              <span class="font-playfair text-3xl lg:text-4xl font-semibold text-sage-300">{s.step}</span>
+            </div>
+            <div>
+              <h2 class="font-playfair text-xl lg:text-2xl font-medium mb-2">{s.title}</h2>
+              <p class="text-stone-600 leading-relaxed">{s.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-14 bg-stone-50 rounded-xl p-6 lg:p-8">
+        <h2 class="font-playfair text-xl lg:text-2xl font-medium mb-3">What our ratings mean</h2>
+        <ul class="space-y-2 text-stone-600 text-sm leading-relaxed">
+          <li><strong class="text-stone-900">4.5&ndash;5.0</strong> &mdash; We would buy it again at full price and recommend it without caveats.</li>
+          <li><strong class="text-stone-900">4.0&ndash;4.4</strong> &mdash; Very good, with a limitation worth knowing about (price, scent, specific skin types).</li>
+          <li><strong class="text-stone-900">3.5&ndash;3.9</strong> &mdash; Does the job. Fine if it suits your needs, but better options usually exist.</li>
+          <li><strong class="text-stone-900">Below 3.5</strong> &mdash; We do not publish full reviews of products this weak; a short mention in a roundup is all they get.</li>
+        </ul>
+      </div>
+
+      <h2 class="font-playfair text-2xl font-medium mt-14 mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+        {faq.map((f, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{f.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{f.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>
