@@ -124,6 +124,60 @@ if (action === 'migrate-domain') {
   await api(`/accounts/${accountId}/pages/projects/${project}/domains`);
 }
 
+if (action === 'compare') {
+  for (const name of ['beautiful-vegan', 'vegantattoostudios', 'buildingabrandonline']) {
+    const projectData = await api(`/accounts/${accountId}/pages/projects/${name}`);
+    if (!projectData.success) continue;
+    const r = projectData.result;
+    console.log(`\n=== ${name} ===`);
+    console.log(JSON.stringify({
+      source: r.source,
+      canonical: r.canonical_deployment?.id,
+      latest_trigger: r.latest_deployment?.deployment_trigger,
+      domains: r.domains,
+    }, null, 2));
+  }
+}
+
+if (action === 'relink') {
+  const updated = await api(`/accounts/${accountId}/pages/projects/${project}`, 'PATCH', {
+    source: {
+      type: 'github',
+      config: {
+        owner: 'michelborrer',
+        owner_id: '241949766',
+        repo_name: repo,
+        repo_id: '1292422409',
+        production_branch: 'main',
+        pr_comments_enabled: true,
+        deployments_enabled: true,
+        production_deployments_enabled: true,
+        preview_deployment_setting: 'all',
+        preview_branch_includes: ['*'],
+      },
+    },
+    build_config: {
+      build_command: 'npm run build',
+      destination_dir: 'dist',
+      root_dir: '',
+    },
+  });
+  if (!updated.success) process.exit(1);
+}
+
+if (action === 'deploy-hook') {
+  const hooks = await api(`/accounts/${accountId}/pages/projects/${project}/deploy_hooks`);
+  if (hooks.success && hooks.result?.length) {
+    console.log(JSON.stringify(hooks.result, null, 2));
+    return;
+  }
+  const created = await api(`/accounts/${accountId}/pages/projects/${project}/deploy_hooks`, 'POST', {
+    name: 'github-main',
+    branch: 'main',
+  });
+  if (created.success) console.log('Created hook:', JSON.stringify(created.result, null, 2));
+}
+
 if (action === 'deploy') {
   await api(`/accounts/${accountId}/pages/projects/${project}/deployments`, 'POST', {
     branch: 'main',
