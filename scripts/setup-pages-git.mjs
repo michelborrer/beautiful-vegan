@@ -169,13 +169,13 @@ if (action === 'deploy-hook') {
   const hooks = await api(`/accounts/${accountId}/pages/projects/${project}/deploy_hooks`);
   if (hooks.success && hooks.result?.length) {
     console.log(JSON.stringify(hooks.result, null, 2));
-    return;
+  } else {
+    const created = await api(`/accounts/${accountId}/pages/projects/${project}/deploy_hooks`, 'POST', {
+      name: 'github-main',
+      branch: 'main',
+    });
+    if (created.success) console.log('Created hook:', JSON.stringify(created.result, null, 2));
   }
-  const created = await api(`/accounts/${accountId}/pages/projects/${project}/deploy_hooks`, 'POST', {
-    name: 'github-main',
-    branch: 'main',
-  });
-  if (created.success) console.log('Created hook:', JSON.stringify(created.result, null, 2));
 }
 
 if (action === 'deploy') {
