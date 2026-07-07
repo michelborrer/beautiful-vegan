@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = "Is Tower 28 Cruelty-Free? 2025 Update | Beautiful Vegan";
+const description = "Tower 28 is a clean beauty brand focused on sensitive skin. Learn about their cruelty-free and vegan status, certifications, and what makes them different.";
+
+const breadcrumbItems = [
+  { label: 'Brands', href: '/brands.html' },
+  { label: 'Tower 28' },
+];
+
+const facts = [{"label": "Cruelty-Free", "value": "Yes", "class": "text-sage-700"}, {"label": "Vegan", "value": "No (some beeswax)", "class": "text-rose-600"}, {"label": "Parent Company", "value": "Independent", "class": "text-stone-700"}, {"label": "Certifications", "value": "Leaping Bunny, National Eczema Association", "class": "text-sage-700"}, {"label": "Sells in China", "value": "No", "class": "text-sage-700"}, {"label": "Price Range", "value": "$$", "class": "text-stone-700"}, {"label": "Popular Products", "value": "SOS Daily Rescue Facial Spray, ShineOn Milky Lip Jelly, BeachPlease Lip + Cheek Cream", "class": "text-stone-700"}, {"label": "Best For", "value": "Sensitive, eczema-prone skin", "class": "text-stone-700"}];
+const faqQuestions = [{"q": "Does Tower 28 test on animals?", "a": "No. Tower 28 is certified cruelty-free by Leaping Bunny, the gold standard in cruelty-free certification. They do not test on animals at any stage of production, and neither do their suppliers."}, {"q": "Is Tower 28 vegan?", "a": "Not fully. While the majority of Tower 28 products are vegan, some formulas contain beeswax. The brand is working toward becoming fully vegan but has not yet eliminated all animal-derived ingredients. Check individual product pages for vegan status."}, {"q": "What makes Tower 28 good for sensitive skin?", "a": "Tower 28 follows the National Eczema Association's guidelines for sensitive skin. They avoid common irritants like fragrances, essential oils, and known allergens. Every product is dermatologist-tested and approved for sensitive skin types."}, {"q": "Is Tower 28 Leaping Bunny certified?", "a": "Yes. Tower 28 earned Leaping Bunny certification in 2021, which requires a strict supply chain audit to verify no animal testing occurs at any level."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: "Is Tower 28 Cruelty-Free?",
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-15',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/brands/is-tower-28-cruelty-free.html' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/brands/is-tower-28-cruelty-free.html" schema={schema} author="Casey Bloom" image="/images/category-makeup.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-20">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-20 h-20 bg-stone-700 rounded-full flex items-center justify-center mx-auto mb-6">
+        <span class="font-playfair text-3xl text-white font-bold">T</span>
+      </div>
+      <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Is Tower 28 Cruelty-Free?</h1>
+      <div class="inline-flex items-center gap-3 bg-sage-800 rounded-full px-6 py-3 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-300"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="text-sage-200 text-lg font-medium">Yes — Leaping Bunny certified</span>
+      </div>
+      <p class="text-sage-300 leading-relaxed max-w-xl mx-auto">Clean beauty for sensitive skin, independently owned, certified cruelty-free.</p>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <!-- Facts Table -->
+      <div class="bg-stone-50 rounded-xl overflow-hidden mb-10">
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-stone-200">
+            {facts.map(fact => (
+              <tr>
+                <td class="px-5 py-3 font-medium text-stone-700 w-2/5">{fact.label}</td>
+                <td class="px-5 py-3 {fact.class} font-semibold">{fact.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The Details</h2>
+      <p class="text-stone-600 leading-relaxed mb-6">Tower 28 was founded in 2019 by Amy Liu, a beauty industry veteran who struggled to find makeup that worked for her eczema-prone skin. Her frustration led to a brand built entirely around sensitive skin needs — every product is dermatologist-tested, free of common irritants, and National Eczema Association-approved.</p>
+
+      <p class="text-stone-600 leading-relaxed mb-6">Unlike many clean beauty brands that simply avoid certain ingredients, Tower 28 actively follows the National Eczema Association's ingredient guidelines. This means no fragrances, no essential oils, no known allergens. The result is makeup that people with reactive, sensitive, and eczema-prone skin can actually wear without irritation.</p>
+
+      <p class="text-stone-600 leading-relaxed mb-6">Tower 28 earned Leaping Bunny certification in 2021, the most rigorous cruelty-free certification available. They are independently owned (no parent company), which means no corporate pressure to enter markets that require animal testing. While not fully vegan due to beeswax in some formulas, the brand is transparent about which products are vegan and continues to work toward eliminating all animal-derived ingredients.</p>
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <div class="border-t border-stone-200 pt-6">
+        <p class="text-xs text-stone-400"><strong>Affiliate Disclosure:</strong> This post contains affiliate links. We earn a commission when you purchase through our links — at no extra cost to you.</p>
+      </div>
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

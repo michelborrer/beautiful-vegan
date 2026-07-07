@@ -1,0 +1,49 @@
+---
+export interface Props {
+  name?: string;
+  role?: string;
+  bio?: string;
+  image?: string;
+  moreLink?: string;
+}
+
+const {
+  name = 'Casey Bloom',
+  role = 'Founder of Beautiful Vegan',
+  bio = 'Testing cruelty-free skincare since 2009. Committed to helping you find beauty products that work for your skin and the planet.',
+  image = '/images/about-founder.jpg',
+  moreLink = '/about',
+} = Astro.props;
+
+const initials = name.split(' ').map(n => n[0]).join('');
+---
+
+<div class="bg-stone-50 rounded-xl p-6 lg:p-8 mt-12">
+  <div class="flex items-start gap-4">
+    {image ? (
+      <img
+        src={image}
+        alt={name}
+        class="w-16 h-16 lg:w-20 lg:h-20 rounded-full object-cover border-2 border-white shadow-sm"
+        loading="lazy"
+        width="80"
+        height="80"
+      />
+    ) : (
+      <div class="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-sage-500 flex items-center justify-center text-white font-playfair font-semibold text-xl border-2 border-white shadow-sm">
+        {initials}
+      </div>
+    )}
+    <div class="flex-1">
+      <h4 class="font-playfair text-lg font-medium text-stone-900">{name}</h4>
+      <p class="text-sm text-sage-600 font-medium mb-2">{role}</p>
+      <p class="text-sm text-stone-600 leading-relaxed">{bio}</p>
+      {moreLink && (
+        <a href={moreLink} class="inline-flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700 mt-3 transition-colors">
+          More from {name.split(' ')[0]}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      )}
+    </div>
+  </div>
+</div>

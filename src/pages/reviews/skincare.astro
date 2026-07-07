@@ -1,0 +1,222 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const pageTitle = 'Vegan Skincare Reviews | Beautiful Vegan';
+const pageDescription = 'Honest reviews of the best vegan skincare products — cleansers, serums, moisturizers, and sunscreens that are cruelty-free and actually work.';
+
+const breadcrumbItems = [
+  { label: 'Reviews', href: '/reviews/skincare.html' },
+  { label: 'Skincare' },
+];
+
+const articles = [
+  {
+    title: '7 Best Vegan Moisturizers for Every Skin Type in 2025',
+    excerpt: 'We tested 23 vegan moisturizers over 8 weeks. These 7 actually delivered on their promises — from budget drugstore picks to luxury splurges.',
+    image: '/images/articles/moisturizer-review.jpg',
+    category: 'Moisturizers',
+    categoryHref: '/reviews/skincare.html',
+    href: '/reviews/skincare/best-vegan-moisturizers-2025.html',
+    date: 'May 15, 2025',
+    readTime: '12 min read',
+    author: 'Casey Bloom',
+    rating: '4.8',
+  },
+  {
+    title: 'Best Vegan Vitamin C Serums That Actually Brighten',
+    excerpt: "Vitamin C is the gold standard for brightening, but finding a stable vegan formula is tricky. We tested 12 and found 5 that genuinely deliver results.",
+    image: '/images/articles/vitamin-c-serum.jpg',
+    category: 'Serums',
+    categoryHref: '/reviews/skincare.html',
+    href: '/reviews/skincare/best-vegan-vitamin-c-serums.html',
+    date: 'May 8, 2025',
+    readTime: '10 min read',
+    author: 'Casey Bloom',
+    rating: '4.6',
+  },
+  {
+    title: '5 Vegan Sunscreens That Don\'t Leave a White Cast',
+    excerpt: 'Mineral sunscreens are often reef-safe and vegan, but that white cast is real. These 5 formulas blend seamlessly on all skin tones.',
+    image: '/images/articles/sunscreen-review.jpg',
+    category: 'Sunscreen',
+    categoryHref: '/reviews/skincare.html',
+    href: '/reviews/skincare/best-vegan-sunscreens.html',
+    date: 'April 30, 2025',
+    readTime: '8 min read',
+    author: 'Casey Bloom',
+    rating: '4.7',
+  },
+  {
+    title: 'The Ordinary Vegan Guide: What to Buy and What to Skip',
+    excerpt: "The Ordinary has some incredible vegan formulas, but not everything is cruelty-free. Here's the definitive guide to what's safe to buy.",
+    image: '/images/articles/ordinary-brand.jpg',
+    category: 'Brand Guide',
+    categoryHref: '/reviews/skincare.html',
+    href: '/reviews/skincare/the-ordinary-vegan-guide.html',
+    date: 'April 22, 2025',
+    readTime: '9 min read',
+    author: 'Casey Bloom',
+  },
+  {
+    title: 'Best Vegan Cleansers for Sensitive Skin',
+    excerpt: 'Gentle cleansing is the foundation of good skincare. These 6 vegan cleansers remove makeup and impurities without stripping your barrier.',
+    image: '/images/category-skincare.jpg',
+    category: 'Cleansers',
+    categoryHref: '/reviews/skincare.html',
+    href: '/reviews/skincare/best-vegan-cleansers-sensitive-skin.html',
+    date: 'April 15, 2025',
+    readTime: '7 min read',
+    author: 'Casey Bloom',
+    rating: '4.5',
+  },
+  {
+    title: 'Vegan Retinol Alternatives: Bakuchiol vs. Retinol',
+    excerpt: "Bakuchiol is marketed as nature's retinol, but does it actually work? We break down the science and recommend the best formulas for every concern.",
+    image: '/images/category-skincare.jpg',
+    category: 'Anti-Aging',
+    categoryHref: '/reviews/skincare.html',
+    href: '/reviews/skincare/vegan-retinol-alternatives.html',
+    date: 'April 8, 2025',
+    readTime: '11 min read',
+    author: 'Casey Bloom',
+    rating: '4.9',
+  },
+];
+
+const sidebarArticles = [
+  { title: 'Niacinamide: The Ingredient Everyone Should Use', href: '/ingredients/niacinamide-benefits.html' },
+  { title: 'Is CeraVe Actually Vegan?', href: '/brands/is-cerave-cruelty-free.html' },
+  { title: 'How to Build a Vegan Skincare Routine', href: '/guides/beginners-guide-cruelty-free-beauty.html' },
+];
+
+const relatedIngredients = [
+  { name: 'Hyaluronic Acid', href: '/ingredients/hyaluronic-acid-vegan-source.html' },
+  { name: 'Niacinamide', href: '/ingredients/niacinamide-benefits.html' },
+  { name: 'Vitamin C', href: '/reviews/skincare/best-vegan-vitamin-c-serums.html' },
+  { name: 'Avocado Oil', href: '/ingredients/avocado-for-skin.html' },
+  { name: 'Aloe Vera', href: '/ingredients/aloe-vera-skin-benefits.html' },
+];
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  canonical="/reviews/skincare.html"
+>
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  
+  <div class="bg-stone-50">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+  </div>
+  
+  <!-- Hero -->
+  <section class="relative bg-sage-900">
+    <div class="absolute inset-0">
+      <img 
+        src="/images/category-skincare.jpg" 
+        alt="Cruelty-free skincare products arranged on marble surface"
+        class="w-full h-full object-cover opacity-30"
+        loading="eager"
+        width="1200"
+        height="500"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-sage-900/90 to-sage-900/50"></div>
+    </div>
+    <div class="container-main px-4 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
+      <div class="max-w-2xl">
+        <h1 class="text-white mb-4">Vegan Skincare Reviews</h1>
+        <p class="text-sage-200 text-lg leading-relaxed">
+          Cleanse, treat, and hydrate with confidence. Our skincare reviews cover everything from gentle cleansers to potent serums — all 100% vegan and cruelty-free, rigorously tested on real skin.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Content -->
+  <section class="bg-stone-50 section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-[1fr_320px] gap-10">
+        <!-- Main -->
+        <div>
+          <!-- Filter Bar -->
+          <div class="flex flex-wrap items-center gap-3 mb-8">
+            <span class="text-sm text-stone-500">Filter:</span>
+            <a href="/reviews/skincare.html" class="px-4 py-1.5 bg-sage-500 text-white text-sm rounded-full font-medium">All</a>
+            <a href="/reviews/skincare/best-vegan-moisturizers-2025.html" class="px-4 py-1.5 bg-white text-stone-600 text-sm rounded-full font-medium border border-stone-200 hover:border-sage-300 transition-colors">Moisturizer</a>
+            <a href="/reviews/skincare/best-vegan-vitamin-c-serums.html" class="px-4 py-1.5 bg-white text-stone-600 text-sm rounded-full font-medium border border-stone-200 hover:border-sage-300 transition-colors">Serum</a>
+            <a href="/reviews/skincare/best-vegan-sunscreens.html" class="px-4 py-1.5 bg-white text-stone-600 text-sm rounded-full font-medium border border-stone-200 hover:border-sage-300 transition-colors">Sunscreen</a>
+            <span class="px-4 py-1.5 bg-white text-stone-400 text-sm rounded-full font-medium border border-stone-200 opacity-50 cursor-not-allowed" title="Coming soon">Cleanser</span>
+            <div class="ml-auto">
+              <select class="bg-white border border-stone-200 rounded-lg px-3 py-1.5 text-sm text-stone-600 outline-none focus:border-sage-400">
+                <option>Latest First</option>
+                <option>Oldest First</option>
+                <option>Highest Rated</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Article Grid -->
+          <div class="grid sm:grid-cols-2 gap-6">
+            {articles.map(article => (
+              <ArticleCard {...article} />
+            ))}
+          </div>
+          
+          <!-- Pagination -->
+          <div class="flex items-center justify-center gap-2 mt-10">
+            <span class="w-10 h-10 bg-sage-500 text-white rounded-lg flex items-center justify-center font-medium text-sm">1</span>
+            <a href="/reviews/skincare/page/2.html" class="w-10 h-10 bg-white text-stone-600 rounded-lg flex items-center justify-center font-medium text-sm border border-stone-200 hover:border-sage-300 transition-colors">2</a>
+            <a href="/reviews/skincare/page/3.html" class="w-10 h-10 bg-white text-stone-600 rounded-lg flex items-center justify-center font-medium text-sm border border-stone-200 hover:border-sage-300 transition-colors">3</a>
+            <a href="/reviews/skincare/page/2.html" class="w-10 h-10 bg-white text-stone-600 rounded-lg flex items-center justify-center border border-stone-200 hover:border-sage-300 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <aside class="space-y-8">
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h4 class="font-playfair text-lg font-medium mb-4">Popular Articles</h4>
+            <ul class="space-y-3">
+              {sidebarArticles.map(article => (
+                <li>
+                  <a href={article.href} class="text-sm text-stone-600 hover:text-sage-600 transition-colors leading-relaxed block">
+                    {article.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h4 class="font-playfair text-lg font-medium mb-4">Related Ingredients</h4>
+            <div class="flex flex-wrap gap-2">
+              {relatedIngredients.map(ing => (
+                <a href={ing.href} class="text-xs bg-sage-50 text-sage-700 px-3 py-1.5 rounded-full hover:bg-sage-100 transition-colors">
+                  {ing.name}
+                </a>
+              ))}
+            </div>
+          </div>
+          
+          <div class="bg-sage-700 rounded-xl p-6 text-center">
+            <h4 class="font-playfair text-white text-lg font-medium mb-2">Stay Updated</h4>
+            <p class="text-white/80 text-sm mb-4">Get notified when we publish new skincare reviews.</p>
+            <a href="/newsletter.html" class="inline-flex items-center justify-center py-2.5 px-5 w-full bg-white text-sage-700 font-semibold text-sm rounded-full hover:bg-sage-50 transition-all">Subscribe</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+  
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

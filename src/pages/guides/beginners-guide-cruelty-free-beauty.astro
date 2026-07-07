@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = 'Beginner\'s Guide to Cruelty-Free Beauty | Beautiful Vegan';
+const description = 'Everything you need to know to start your cruelty-free beauty journey. Learn to identify ethical products, read labels, and build a clean routine.';
+
+const breadcrumbItems = [
+  { label: 'Guides', href: '/guides.html' },
+  { label: 'Beginner\'s Guide to Cruelty-Free Beauty' },
+];
+
+const faqQuestions = [{"q": "Is cruelty-free the same as vegan?", "a": "No. Cruelty-free means no animal testing. Vegan means no animal-derived ingredients. A product can be one without being the other."}, {"q": "Do cruelty-free products cost more?", "a": "Not necessarily. Many drugstore brands like e.l.f. and NYX are certified cruelty-free and very affordable."}, {"q": "What if my favorite brand isn\'t cruelty-free?", "a": "Consider reaching out to the brand to express your concerns. Consumer demand drives change — many brands have gone cruelty-free after hearing from customers."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Beginner\'s Guide to Cruelty-Free Beauty',
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-01',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/guides/beginners-guide-cruelty-free-beauty.html' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/guides/beginners-guide-cruelty-free-beauty.html" schema={schema} author="Casey Bloom" image="/images/hero-homepage.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-24">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <span class="text-sage-300 text-sm font-medium tracking-wide uppercase mb-4 block">Beginner Guide</span>
+        <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Beginner's Guide to Cruelty-Free Beauty</h1>
+        <p class="text-sage-200 text-lg leading-relaxed">Everything you need to know to start your cruelty-free beauty journey.</p>
+        <div class="flex items-center gap-3 mt-4 text-white/70 text-sm">
+          <span>By <strong class="text-white">Casey Bloom</strong></span><span>&middot;</span><span>15 min read</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <h2>What Does Cruelty-Free Really Mean?</h2>
+<p class="text-stone-600 leading-relaxed mb-6">The term "cruelty-free" has no legal definition. A truly cruelty-free brand does not test finished products or ingredients on animals, does not allow third parties to test on its behalf, and does not sell in markets where animal testing is required by law.</p>
+<h2>Why Make the Switch?</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Animal testing is unnecessary. Modern alternatives like in-vitro testing, computer modeling, and human volunteer studies are often more accurate. Plus, cruelty-free brands frequently use cleaner, more innovative ingredients.</p>
+<h2>How to Read Labels</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Look for third-party certifications like Leaping Bunny, PETA's Beauty Without Bunnies, or Choose Cruelty-Free. Be wary of vague claims — only independent verification guarantees a brand is truly cruelty-free.</p>
+<h2>Building Your First Cruelty-Free Routine</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Start with the basics: a gentle cleanser, a good moisturizer, and sunscreen. Replace products as they run out rather than all at once. This gradual approach is kinder to your skin and your budget.</p>
+
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <AuthorBox />
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

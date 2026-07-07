@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = "Is Drunk Elephant Cruelty-Free? 2025 Update | Beautiful Vegan";
+const description = "Drunk Elephant is a popular luxury skincare brand. But is it cruelty-free and vegan? We break down the facts.";
+
+const breadcrumbItems = [
+  { label: 'Brands', href: '/brands.html' },
+  { label: 'Drunk Elephant' },
+];
+
+const facts = [{"label": "Cruelty-Free", "value": "Yes (with caveat)", "class": "text-sage-700"}, {"label": "Vegan", "value": "Mostly vegan", "class": "text-stone-700"}, {"label": "Parent Company", "value": "Shiseido (NOT cruelty-free)", "class": "text-rose-600"}, {"label": "Certifications", "value": "None independent", "class": "text-stone-500"}, {"label": "Sells in China", "value": "No (cross-border only)", "class": "text-sage-700"}, {"label": "Price Range", "value": "$$$", "class": "text-stone-700"}, {"label": "Popular Products", "value": "Protini Polypeptide Cream, C-Firma Fresh Serum, TLC Framboos Glycolic Night Serum", "class": "text-stone-700"}, {"label": "Alternatives", "value": "The Ordinary (budget), Versed (mid-range)", "class": "text-sage-700"}];
+const faqQuestions = [{"q": "Does Drunk Elephant test on animals?", "a": "No. Drunk Elephant does not test its products or ingredients on animals, and does not sell in mainland China where animal testing is required by law. They sell via cross-border e-commerce only."}, {"q": "Is Drunk Elephant vegan?", "a": "Mostly. The vast majority of Drunk Elephant products are vegan. However, a small number contain honey or beeswax-derived ingredients. Check individual product labels if you are strictly vegan."}, {"q": "Who owns Drunk Elephant?", "a": "Drunk Elephant was acquired by Shiseido in 2019 for $845 million. Shiseido is NOT cruelty-free as they sell in mainland China."}, {"q": "Why do people love Drunk Elephant?", "a": "Drunk Elephant formulates without the 'Suspicious 6' ingredients they believe cause skin sensitivity: essential oils, drying alcohols, silicones, chemical sunscreens, fragrances/dyes, and SLS. Their biocompatible approach resonates with sensitive skin types."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: "Is Drunk Elephant Cruelty-Free?",
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-15',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/brands/is-drunk-elephant-cruelty-free.html' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/brands/is-drunk-elephant-cruelty-free.html" schema={schema} author="Casey Bloom" image="/images/category-skincare.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-20">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-20 h-20 bg-stone-700 rounded-full flex items-center justify-center mx-auto mb-6">
+        <span class="font-playfair text-3xl text-white font-bold">D</span>
+      </div>
+      <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Is Drunk Elephant Cruelty-Free?</h1>
+      <div class="inline-flex items-center gap-3 bg-sage-800 rounded-full px-6 py-3 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-300"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="text-sage-200 text-lg font-medium">Yes — with a parent company caveat</span>
+      </div>
+      <p class="text-sage-300 leading-relaxed max-w-xl mx-auto">Drunk Elephant does not test on animals, but parent company Shiseido is not cruelty-free.</p>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <!-- Facts Table -->
+      <div class="bg-stone-50 rounded-xl overflow-hidden mb-10">
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-stone-200">
+            {facts.map(fact => (
+              <tr>
+                <td class="px-5 py-3 font-medium text-stone-700 w-2/5">{fact.label}</td>
+                <td class="px-5 py-3 {fact.class} font-semibold">{fact.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The Details</h2>
+      <p class="text-stone-600 leading-relaxed mb-6">Drunk Elephant was founded in 2012 by Tiffany Masterson and quickly became one of the most talked-about skincare brands in the beauty industry. Their 'clean-compatible' philosophy — formulating without essential oils, drying alcohols, silicones, chemical sunscreens, fragrances, and SLS — resonated deeply with consumers who had sensitive or reactive skin.</p>
+
+      <p class="text-stone-600 leading-relaxed mb-6">In 2019, Shiseido acquired Drunk Elephant for $845 million. Shiseido is not cruelty-free because they sell in mainland China, where animal testing is required by law. However, Drunk Elephant itself does not sell in China. The brand operates independently and maintains its no-animal-testing policy. Products are sold in China only through cross-border e-commerce channels, which do not require animal testing.</p>
+
+      <p class="text-stone-600 leading-relaxed mb-6">While most Drunk Elephant products are vegan, some contain honey-derived ingredients. If you follow a strict vegan lifestyle, check individual product labels. The brand is transparent about ingredients and lists everything clearly on their packaging and website.</p>
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <div class="border-t border-stone-200 pt-6">
+        <p class="text-xs text-stone-400"><strong>Affiliate Disclosure:</strong> This post contains affiliate links. We earn a commission when you purchase through our links — at no extra cost to you.</p>
+      </div>
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

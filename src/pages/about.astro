@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const pageTitle = 'Our Story | Beautiful Vegan';
+const pageDescription = 'Founded in 2009, Beautiful Vegan has been the trusted voice for cruelty-free beauty. Learn about our mission, values, and editorial standards.';
+
+const breadcrumbItems = [{ label: 'About' }];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Beautiful Vegan',
+  description: pageDescription,
+  url: 'https://beautiful-vegan.com/about',
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} canonical="/about" schema={schema}>
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+  
+  <section class="relative bg-sage-900">
+    <div class="absolute inset-0">
+      <img src="/images/about-founder.jpg" alt="Woman with glowing natural skin representing vegan beauty" class="w-full h-full object-cover opacity-40" loading="eager" width="1200" height="600" />
+      <div class="absolute inset-0 bg-gradient-to-r from-sage-900/90 to-sage-900/60"></div>
+    </div>
+    <div class="container-main px-4 sm:px-6 lg:px-8 relative z-10 py-20 lg:py-32">
+      <div class="max-w-2xl">
+        <span class="text-sage-300 text-sm font-medium tracking-wide uppercase mb-4 block">Est. 2009</span>
+        <h1 class="text-white mb-5 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Our Story</h1>
+        <p class="text-sage-200 text-lg lg:text-xl leading-relaxed">From a small vegan lifestyle blog to a trusted editorial voice in cruelty-free beauty. We have been proving that ethical beauty is not a compromise — it is a choice that delivers real results.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-white section-padding">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-6 text-center">Why Vegan Beauty Matters</h2>
+      <div class="space-y-6 text-lg leading-relaxed text-stone-600">
+        <p>In 2009, finding cruelty-free beauty products meant scouring ingredient lists, sending emails to brands, and hoping for honest answers. The term &quot;vegan beauty&quot; barely existed. We started Beautiful Vegan to change that.</p>
+        <p>What began as a passion project sharing vegan recipes and lifestyle tips has evolved into something bigger. Today, we are laser-focused on what we do best: <strong class="text-stone-900">testing products, explaining ingredients, and helping you make informed choices</strong> about the beauty products you bring into your daily routine.</p>
+        <p>We believe beauty should not come at a cost to animals. But we also believe that ethical products should <em>perform</em>. Every review on this site answers one fundamental question: does this product actually work?</p>
+        <p>Our testing process is rigorous. We use each product for a minimum of 4 weeks before writing about it. We test on different skin types, note texture, scent, absorption time, and visible results. When we recommend something, it means we would buy it ourselves.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-stone-100 section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12"><h2 class="mb-3">Our Editorial Standards</h2><p class="text-stone-500 max-w-lg mx-auto">Independence and transparency guide everything we publish.</p></div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 lg:p-8"><div class="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3 class="font-playfair text-xl font-medium mb-2">Independently Owned</h3><p class="text-stone-500 text-sm leading-relaxed">No parent company, no investors, no corporate agenda. Our recommendations are driven by testing results, not affiliate commission rates.</p></div>
+        <div class="bg-white rounded-xl p-6 lg:p-8"><div class="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-600"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div><h3 class="font-playfair text-xl font-medium mb-2">Full Transparency</h3><p class="text-stone-500 text-sm leading-relaxed">We disclose every affiliate relationship and clearly label sponsored content. Our affiliate disclosure appears on every page that contains affiliate links.</p></div>
+        <div class="bg-white rounded-xl p-6 lg:p-8"><div class="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-600"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div><h3 class="font-playfair text-xl font-medium mb-2">No AI Content</h3><p class="text-stone-500 text-sm leading-relaxed">Every article is researched and written by humans who actually test the products. No AI-generated reviews, no regurgitated press releases.</p></div>
+        <div class="bg-white rounded-xl p-6 lg:p-8"><div class="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-600"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><h3 class="font-playfair text-xl font-medium mb-2">Expert Reviewed</h3><p class="text-stone-500 text-sm leading-relaxed">Our content is reviewed for accuracy by team members with backgrounds in cosmetic chemistry and dermatology research.</p></div>
+        <div class="bg-white rounded-xl p-6 lg:p-8"><div class="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-600"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div><h3 class="font-playfair text-xl font-medium mb-2">Since 2009</h3><p class="text-stone-500 text-sm leading-relaxed">Over 15 years of expertise in vegan and cruelty-free beauty. We have watched the industry evolve from niche to mainstream.</p></div>
+        <div class="bg-white rounded-xl p-6 lg:p-8"><div class="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-600"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3 class="font-playfair text-xl font-medium mb-2">Community Driven</h3><p class="text-stone-500 text-sm leading-relaxed">We listen to our readers. Product suggestions, brand investigations, and topic requests shape our editorial calendar.</p></div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-white section-padding">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="mb-6">Meet the Creator</h2>
+      <img src="/images/about-founder.jpg" alt="Casey Bloom, founder of Beautiful Vegan" class="w-48 h-48 rounded-full object-cover mx-auto mb-6 shadow-lg" loading="lazy" width="192" height="192" />
+      <h3 class="font-playfair text-2xl font-medium mb-2">Casey Bloom</h3>
+      <p class="text-sage-600 font-medium text-sm mb-4">Founder &amp; Editor-in-Chief</p>
+      <div class="text-stone-600 leading-relaxed max-w-lg mx-auto">
+        <p>Lyn started Beautiful Vegan in 2009 after struggling to find reliable information about vegan beauty products. What started as a personal blog has grown into a trusted resource for thousands of readers seeking honest, thorough cruelty-free beauty reviews.</p>
+        <p class="mt-4">When she is not testing serums or decoding ingredient lists, you will find her advocating for animal welfare and sustainable living.</p>
+      </div>
+    </div>
+  </section>
+  
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

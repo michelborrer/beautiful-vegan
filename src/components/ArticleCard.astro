@@ -1,0 +1,46 @@
+---
+import StarRating from './StarRating.astro';
+
+export interface Props {
+  title: string;
+  excerpt: string;
+  image: string;
+  category: string;
+  categoryHref: string;
+  href: string;
+  date: string;
+  readTime: string;
+  author?: string;
+  rating?: string;
+}
+
+const { title, excerpt, image, category, categoryHref, href, date, readTime, author = 'Casey Bloom', rating } = Astro.props;
+const authorInitials = author.split(' ').map(n => n[0]).join('');
+---
+
+<article class="card group h-full flex flex-col">
+  <a href={href} class="block flex-1 flex flex-col">
+    <div class="relative overflow-hidden">
+      <img src={image} alt={title} class="card-image group-hover:scale-105 transition-transform duration-500" loading="lazy" width="600" height="375" />
+    </div>
+    <div class="p-5 flex-1 flex flex-col">
+      <div class="flex items-center gap-2 mb-3 flex-wrap">
+        <a href={categoryHref} class="tag-sage">{category}</a>
+        {rating && <StarRating rating={rating} size="sm" />}
+      </div>
+      <h3 class="font-playfair text-xl font-medium mb-2 group-hover:text-sage-600 transition-colors line-clamp-2">{title}</h3>
+      <p class="text-stone-500 text-sm line-clamp-2 leading-relaxed mb-4">{excerpt}</p>
+      <div class="mt-auto pt-3 border-t border-stone-100">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-7 h-7 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 text-xs font-semibold">{authorInitials}</div>
+          <span class="text-xs text-stone-600">By {author}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-xs text-stone-400">{date} · {readTime}</span>
+          <a href={href} class="text-sm font-medium text-sage-600 hover:text-sage-800 inline-flex items-center gap-1 transition-colors">
+            Read More<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </a>
+</article>

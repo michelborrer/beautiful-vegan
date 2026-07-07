@@ -1,0 +1,8 @@
+{
+	// Existing Cloudflare Worker serving beautiful-vegan.com
+	"name": "long-pond-37c9",
+	"compatibility_date": "2026-07-07",
+	"assets": {
+		"directory": "./dist"
+	}
+}

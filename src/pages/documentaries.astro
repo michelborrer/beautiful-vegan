@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const pageTitle = 'Must-Watch Vegan Documentaries | Beautiful Vegan';
+const pageDescription = 'Powerful documentaries about veganism, animal welfare, and the impact of our choices. Stream these eye-opening films tonight.';
+
+const breadcrumbItems = [{ label: 'Documentaries' }];
+
+const documentaries = [
+  {
+    title: 'Dominion',
+    year: '2018',
+    description: 'A comprehensive examination of the various ways animals are used and abused in Australia, featuring narration by Joaquin Phoenix, Rooney Mara, and Sia.',
+    platform: 'YouTube (Free)',
+    rating: '9.2',
+    tags: ['Animal Rights', 'Hard-Hitting'],
+    watchUrl: 'https://www.youtube.com/watch?v=LQRAfJyEsko',
+  },
+  {
+    title: 'Cowspiracy',
+    year: '2014',
+    description: 'Follows filmmaker Kip Andersen as he investigates why the world\'s leading environmental organizations are afraid to talk about animal agriculture.',
+    platform: 'Netflix',
+    rating: '8.7',
+    tags: ['Environment', 'Investigative'],
+    watchUrl: 'https://www.cowspiracy.com',
+  },
+  {
+    title: 'The Game Changers',
+    year: '2019',
+    description: 'James Wilks travels the world on a quest for the truth about meat, protein, and strength. Features elite athletes thriving on plant-based diets.',
+    platform: 'Netflix',
+    rating: '8.5',
+    tags: ['Health', 'Athletes'],
+    watchUrl: 'https://gamechangersmovie.com',
+  },
+  {
+    title: 'Earthlings',
+    year: '2005',
+    description: 'Narrated by Joaquin Phoenix, this groundbreaking film covers pet stores, puppy mills, factory farms, slaughterhouses, and the leather and fur trades.',
+    platform: 'YouTube (Free)',
+    rating: '9.0',
+    tags: ['Animal Rights', 'Classic'],
+    watchUrl: 'https://www.youtube.com/watch?v=Hm7BabsA4Cs',
+  },
+  {
+    title: 'What the Health',
+    year: '2017',
+    description: 'Investigates the link between diet and disease, and the influence of the pharmaceutical and food industries on health organizations.',
+    platform: 'Netflix',
+    rating: '8.0',
+    tags: ['Health', 'Investigative'],
+    watchUrl: 'https://www.whatthehealthfilm.com',
+  },
+  {
+    title: 'Seaspiracy',
+    year: '2021',
+    description: 'Filmmaker Ali Tabrizi examines the global fishing industry, challenging notions of sustainable fishing and exposing corruption and pollution.',
+    platform: 'Netflix',
+    rating: '8.3',
+    tags: ['Environment', 'Ocean'],
+    watchUrl: 'https://www.seaspiracy.org',
+  },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} canonical="/documentaries">
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  
+  <div class="bg-stone-50">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+  </div>
+  
+  <section class="bg-sage-900 py-16 lg:py-24">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center">
+        <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Must-Watch Documentaries</h1>
+        <p class="text-sage-200 text-lg leading-relaxed">
+          Powerful films that explore veganism, animal welfare, and the impact of our daily choices. Prepare to see the world differently.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-stone-50 section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {documentaries.map(doc => (
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5">
+            <div class="bg-sage-900 p-6 text-center">
+              <h3 class="font-playfair text-xl text-white mb-1">{doc.title}</h3>
+              <p class="text-sage-300 text-sm">{doc.year}</p>
+              <div class="flex items-center justify-center gap-1 mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span class="text-white font-semibold text-sm">{doc.rating}</span>
+                <span class="text-sage-400 text-xs ml-1">/ 10</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <p class="text-stone-600 text-sm leading-relaxed mb-4">{doc.description}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {doc.tags.map(tag => <span class="text-xs bg-stone-100 text-stone-600 px-2.5 py-1 rounded-full">{tag}</span>)}
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-stone-500">Available on: <strong class="text-stone-700">{doc.platform}</strong></span>
+                <a href={doc.watchUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-sage-600 hover:text-sage-700 inline-flex items-center gap-1 transition-colors">
+                  Watch
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="mt-12 text-center max-w-lg mx-auto">
+        <p class="text-stone-500 text-sm">
+          <strong class="text-stone-700">Disclaimer:</strong> Some of these documentaries contain graphic footage of animal cruelty. Viewer discretion is advised. All documentaries listed are independently produced and their inclusion does not constitute an endorsement of all claims made.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

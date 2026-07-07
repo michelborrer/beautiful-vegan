@@ -1,0 +1,28 @@
+---
+export interface Props {
+  rating: string;
+  size?: 'sm' | 'md';
+}
+
+const { rating, size = 'sm' } = Astro.props;
+
+const numericRating = parseFloat(rating);
+const fullStars = Math.floor(numericRating);
+const hasHalf = numericRating - fullStars >= 0.25 && numericRating - fullStars < 0.75;
+const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+
+const sizeClass = size === 'sm' ? 'text-sm' : 'text-lg';
+---
+
+<span class={`inline-flex items-center gap-1 ${sizeClass}`} aria-label={`Rating: ${rating} out of 5`}>
+  <span class="text-yellow-500">
+    {Array.from({ length: fullStars }).map(() => (
+      <span>★</span>
+    ))}
+    {hasHalf && <span>★</span>}
+    {Array.from({ length: emptyStars }).map(() => (
+      <span class="text-stone-300">★</span>
+    ))}
+  </span>
+  <span class="text-stone-500 font-medium text-xs ml-1">{rating}/5</span>
+</span>

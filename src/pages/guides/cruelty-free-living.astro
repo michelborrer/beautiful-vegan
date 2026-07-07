@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = 'Cruelty-Free Living: A Practical Guide | Beautiful Vegan';
+const description = 'Extend cruelty-free principles beyond beauty to household products, fashion, and daily choices. Practical tips for compassionate living.';
+
+const breadcrumbItems = [
+  { label: 'Guides', href: '/guides.html' },
+  { label: 'Cruelty-Free Living: A Practical Guide' },
+];
+
+const faqQuestions = [{"q": "Where can I find cruelty-free household products?", "a": "Most grocery stores and Target carry cruelty-free brands like Method, Seventh Generation, and Mrs. Meyer\'s. Online, The Honest Company and Grove Collaborative offer wide selections."}, {"q": "Is vegan fashion more expensive?", "a": "Not always. Many affordable brands like Native Shoes, Wills Vegan Store, and Matt & Nat offer stylish vegan options at reasonable prices."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Cruelty-Free Living: A Practical Guide',
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-01',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/guides/cruelty-free-living.astro' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/guides/cruelty-free-living.astro" schema={schema} author="Casey Bloom" image="/images/hero-homepage.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-24">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <span class="text-sage-300 text-sm font-medium tracking-wide uppercase mb-4 block">Lifestyle Guide</span>
+        <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Cruelty-Free Living: A Practical Guide</h1>
+        <p class="text-sage-200 text-lg leading-relaxed">Extend cruelty-free principles beyond beauty to household products, fashion, and daily choices.</p>
+        <div class="flex items-center gap-3 mt-4 text-white/70 text-sm">
+          <span>By <strong class="text-white">Casey Bloom</strong></span><span>&middot;</span><span>12 min read</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <h2>Beyond Beauty</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Cruelty-free living extends to household cleaners, laundry detergents, and personal care items. Brands like Method, Mrs. Meyer's, and Seventh Generation offer effective cruelty-free alternatives for every room in your home.</p>
+<h2>Fashion and Textiles</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Look for vegan leather alternatives, cruelty-free wool substitutes, and brands that avoid animal-derived dyes. PETA maintains a list of cruelty-free clothing brands.</p>
+<h2>Cleaning Products</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Many mainstream cleaning brands still test on animals. Switching to cruelty-free cleaners is one of the easiest changes you can make — the products work just as well and often use safer ingredients.</p>
+<h2>Diet and Food Choices</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Reducing animal products in your diet is one of the most impactful ways to live cruelty-free. Start with Meatless Mondays or swap dairy milk for plant-based alternatives.</p>
+
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <AuthorBox />
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

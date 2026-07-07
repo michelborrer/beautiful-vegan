@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = 'Jojoba Oil for Skin: Benefits & How to Use | Beautiful Vegan';
+const description = 'The oil that mimics your skin\'s natural sebum. Lightweight, non-greasy, and perfect for all skin types.';
+
+const breadcrumbItems = [
+  { label: 'Ingredients', href: '/ingredients/avocado-for-skin.html' },
+  { label: 'Jojoba Oil' },
+];
+
+const faqQuestions = [{"q": "Is jojoba oil good for oily skin?", "a": "Yes, it actually helps regulate oil production by mimicking natural sebum."}, {"q": "Can jojoba oil replace moisturizer?", "a": "For oily skin types, yes. Dry skin may need additional hydration."}, {"q": "How do I use jojoba oil?", "a": "Apply 2-3 drops to damp skin after cleansing, morning or night."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Jojoba Oil',
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-01',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/ingredients/jojoba-oil-benefits' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/ingredients/jojoba-oil-benefits" schema={schema} author="Casey Bloom" image="/images/category-skincare.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="relative">
+    <img src="/images/hero-avocado-ingredient.jpg" alt="Jojoba Oil for skincare" class="w-full aspect-[21/9] object-cover" loading="eager" width="1200" height="514" />
+    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/30 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 container-main px-4 sm:px-6 lg:px-8 pb-8">
+      <span class="tag-sage mb-3 inline-block">Ingredient Guide</span>
+      <h1 class="text-white max-w-3xl font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Jojoba Oil</h1>
+      <div class="flex items-center gap-4 mt-4 text-white/70 text-sm">
+        <span>By <strong class="text-white">Casey Bloom</strong></span><span>&middot;</span><span>Updated May 15, 2025</span><span>&middot;</span><span>10 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="text-lg text-stone-600 mb-8">
+        <p class="text-xl leading-relaxed"><strong class="text-stone-900">Jojoba oil is technically a wax — not an oil — which makes it uniquely compatible with human skin.</strong></p>
+        <p class="mt-4">Its molecular structure closely resembles sebum, the oil your skin naturally produces. This means jojoba oil absorbs easily, helps regulate oil production, and works beautifully for every skin type from oily to dry.</p>
+      </div>
+
+      <h2>Key Benefits</h2>
+      <ul class="space-y-3 mb-8 text-stone-600">
+        <li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Balances oil production</strong> — Signals skin to produce less sebum, helping oily skin.</span></li>
+<li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Non-comedogenic</strong> — Rating of 2 — unlikely to clog pores for most people.</span></li>
+<li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Rich in vitamin E</strong> — Antioxidant protection against environmental stressors.</span></li>
+<li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Long shelf life</strong> — Naturally stable and resists oxidation better than most oils.</span></li>
+
+      </ul>
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <AuthorBox />
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

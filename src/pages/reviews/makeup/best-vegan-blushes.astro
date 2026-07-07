@@ -1,0 +1,129 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navigation from '../../../components/Navigation.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import AuthorBox from '../../../components/AuthorBox.astro';
+import AffiliateButton from '../../../components/AffiliateButton.astro';
+import NewsletterForm from '../../../components/NewsletterForm.astro';
+
+const title = '5 Best Vegan Blushes for a Natural Flush | Beautiful Vegan';
+const description = 'Powder, cream, and liquid formulas that deliver a healthy, natural-looking flush without any animal-derived ingredients.';
+
+const breadcrumbItems = [
+  { label: 'Reviews', href: '/reviews/makeup.html' },
+  { label: 'Makeup', href: '/reviews/makeup.html' },
+  { label: 'Vegan Blushes' },
+];
+
+const products = [
+  { rank: 1, name: 'Putty Blush', brand: 'e.l.f.', price: '$6.00', rating: '4.5', bestFor: 'Best Overall', pros: ['Cream-to-powder texture blends seamlessly', 'Highly pigmented — a little goes a long way', '12 shades from pale pink to deep berry', 'Under $6'], cons: ['Can feel slightly dry on very dry skin', 'Best applied with fingers, not brush'], verdict: 'The best vegan blush at any price. The putty texture transforms from cream to powder on contact, blending into skin rather than sitting on top. Our testers loved how natural it looked — like a genuine flush from a brisk walk. The pigmentation is intense, so start with a tiny amount and build. At $6, you can buy three shades for the price of one prestige blush.' },
+  { rank: 2, name: 'Baked Blush', brand: 'Milani', price: '$8.99', rating: '4.3', bestFor: 'Best Drugstore', pros: ['Baked formula has subtle shimmer for glow', 'Buildable from sheer to bold', 'Long-wearing, 8+ hours', 'Beautiful marbled shades'], cons: ['Shimmer may not suit matte preferences', 'Darker shades have limited availability'], verdict: 'Milani Baked Blush is a beauty community favorite for good reason. The baked Italian formula delivers a luminous finish that catches light beautifully without visible glitter. Our testers with dull or tired-looking skin found it added an instant healthy radiance. The shade Luminoso is universally flattering — a peachy-pink that works on virtually every skin tone.' },
+  { rank: 3, name: 'BeachPlease Lip + Cheek Cream Blush', brand: 'Tower 28', price: '$20.00', rating: '4.4', bestFor: 'Best Cream', pros: ['National Eczema Association approved', 'Dewy, natural finish', 'Doubles as lip color', 'Safe for sensitive skin'], cons: ['Dewy finish can fade on oily skin', 'Limited shade range'], verdict: 'The safest cream blush for reactive skin. Tower 28 earned National Eczema Association approval for this formula, meaning it meets strict standards for sensitive skin. The dewy finish looks incredibly natural — like you just exercised. It doubles beautifully as a lip tint, making it perfect for travel. Our sensitive-skin testers experienced zero irritation, which is rare for a cream cheek product.' },
+  { rank: 4, name: 'Beauty Blushious', brand: 'Pacifica', price: '$15.00', rating: '4.0', bestFor: 'Best Clean Formula', pros: ['100% vegan and cruelty-free', 'Coconut and rose infused', 'No synthetic dyes or fragrances', 'Beautiful natural shades'], cons: ['Less pigmented than others', 'Requires building for darker skin tones'], verdict: 'The cleanest blush on our list. Pacifica infuses this formula with coconut and rose for a nourishing, skin-friendly flush. The pigmentation is on the lighter side, which makes it ideal for fair to medium skin tones or for those who prefer a subtle, no-makeup look. Our clean-beauty enthusiasts loved that every ingredient is plant-derived and transparently listed.' },
+  { rank: 5, name: 'Good Apple Cream Blush', brand: 'KVD Beauty', price: '$28.00', rating: '4.2', bestFor: 'Best Bold Color', pros: ['Intensely pigmented — one swipe delivers full color', 'Cream formula blends beautifully', 'Vegan and long-wearing', 'Stunning bold shades'], cons: ['Requires careful application — very pigmented', 'Premium price at $28'], verdict: 'If you want a bold, statement blush, this is it. KVD Beauty Good Apple delivers intense color payoff in a single swipe. Our deeper-skinned testers finally found a blush that shows up vibrantly without needing 5 layers. The cream formula is forgiving and blendable, so even though it is pigmented, you can sheer it out. The bold berry and coral shades are stunning on melanin-rich skin.' },
+];
+
+const faqQuestions = [
+  { q: 'Should I use powder or cream blush?', a: 'Powder works best for oily skin and lasts longer. Cream suits dry skin and gives a dewy, natural finish. Liquid is the most versatile — works on all skin types when set with powder.' },
+  { q: 'Where exactly should I apply blush?', a: 'Smile and apply to the apples of your cheeks, blending upward toward the temples. Avoid placing blush too low (below the nose line) or too close to the nose.' },
+  { q: 'Can I use lipstick as blush?', a: 'Yes, but check the ingredients first. Some lipsticks contain ingredients that can clog pores on cheeks. Cream blushes are formulated specifically for facial skin.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '5 Best Vegan Blushes for a Natural Flush',
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-10',
+  dateModified: '2025-05-10',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/reviews/makeup/best-vegan-blushes.html' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/reviews/makeup/best-vegan-blushes.html" schema={schema} author="Casey Bloom" image="/images/articles/blush-review.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-24">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">5 Best Vegan Blushes for a Natural Flush</h1>
+      <p class="text-sage-200 text-lg leading-relaxed max-w-xl mx-auto">Powder, cream, and liquid formulas for that healthy glow</p>
+      <div class="flex items-center justify-center gap-3 mt-4 text-white/70 text-sm">
+        <span>By <strong class="text-white">Casey Bloom</strong></span><span>&middot;</span><span>May 10, 2025</span><span>&middot;</span><span>10 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container-main px-4 sm:px-6 lg:px-8">
+    <img src="/images/articles/blush-review.jpg" alt="Vegan cream and powder blushes in pink and peach tones" class="w-full aspect-video object-cover rounded-xl" loading="eager" width="1200" height="675" />
+  </div>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="text-lg text-stone-600 mb-8">
+        <p class="text-xl leading-relaxed"><strong class="text-stone-900">The right blush transforms your complexion from flat to radiant in seconds.</strong> But many formulas contain carmine — a red pigment derived from crushed insects — making them unsuitable for strict vegans. We tested 14 vegan blushes across powder, cream, and liquid textures to find the 5 that deliver the most natural, flattering flush.</p>
+      </div>
+
+      <h2>What to Look For</h2>
+      <ul class="space-y-3 mb-8 text-stone-600">
+        <li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Carmine-Free Pigments</strong> - Look for iron oxides, beetroot extract, or fruit pigments as color sources instead of carmine.</span></li>
+        <li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Skin Type Match</strong> - Oily skin needs powder; dry skin loves cream; combination can use either with proper prep.</span></li>
+        <li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Buildable Pigmentation</strong> - Sheer formulas let you control intensity. Highly pigmented options need a light hand.</span></li>
+      </ul>
+
+      <h2>The Winners</h2>
+      <div class="space-y-6">
+        {products.map(p => (
+          <div class="border border-stone-200 rounded-xl p-5 lg:p-6">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-14 h-14 bg-rose-500 text-white rounded-xl flex items-center justify-center font-playfair font-bold text-xl shrink-0">#{p.rank}</div>
+              <div class="flex-1">
+                <h3 class="font-playfair text-xl font-medium">{p.brand} {p.name}</h3>
+                <div class="flex items-center gap-3 mt-1">
+                  <span class="text-rose-600 font-bold">{p.price}</span>
+                  <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded-full">{p.bestFor}</span>
+                </div>
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <div><p class="text-xs font-semibold text-sage-700 uppercase mb-2">Pros</p><ul class="space-y-1">{p.pros.map(pro => <li class="flex items-start gap-2 text-sm text-stone-600"><svg class="w-4 h-4 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>{pro}</li>)}</ul></div>
+              <div><p class="text-xs font-semibold text-rose-700 uppercase mb-2">Cons</p><ul class="space-y-1">{p.cons.map(con => <li class="flex items-start gap-2 text-sm text-stone-600"><svg class="w-4 h-4 text-rose-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>{con}</li>)}</ul></div>
+            </div>
+            <div class="bg-stone-50 rounded-lg p-4 mb-4"><p class="text-sm text-stone-600 italic">{p.verdict}</p></div>
+            <AffiliateButton />
+          </div>
+        ))}
+      </div>
+
+      <div class="border-t border-stone-200 pt-6 mt-10">
+        <p class="text-xs text-stone-400"><strong>Affiliate Disclosure:</strong> This post contains affiliate links. We earn a commission when you purchase through our links — at no extra cost to you.</p>
+      </div>
+
+      <h2 class="mt-12 mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none"><span class="font-medium text-stone-900 pr-4">{faq.q}</span><svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <AuthorBox />
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const pageTitle = 'Vegan Beauty Guides | Beautiful Vegan';
+const pageDescription = 'Beginner guides, how-tos, and deep dives into cruelty-free living. Learn how to build a vegan beauty routine and read labels like a pro.';
+
+const breadcrumbItems = [{ label: 'Guides' }];
+
+const guides = [
+  {
+    title: "Beginner's Guide to Cruelty-Free Beauty",
+    excerpt: 'Just starting your cruelty-free journey? This guide covers everything from understanding certifications to building your first vegan skincare routine.',
+    href: '/guides/beginners-guide-cruelty-free-beauty.html',
+    tag: 'Beginner',
+    readTime: '15 min',
+    featured: true,
+  },
+  {
+    title: 'Cruelty-Free Living: Beyond Beauty',
+    excerpt: 'Cruelty-free living extends beyond your bathroom cabinet. Learn about vegan household products, ethical fashion, and making compassionate choices in every area of life.',
+    href: '/guides/cruelty-free-living.html',
+    tag: 'Lifestyle',
+    readTime: '12 min',
+    featured: true,
+  },
+  {
+    title: 'Vegan Lifestyle Guide',
+    excerpt: 'A comprehensive resource for embracing a vegan lifestyle — from nutrition basics to navigating social situations and finding community.',
+    href: '/guides/vegan-lifestyle.html',
+    tag: 'Lifestyle',
+    readTime: '20 min',
+    featured: false,
+  },
+];
+
+const quickTips = [
+  { title: 'Beginner\'s Guide to Cruelty-Free Beauty', href: '/guides/beginners-guide-cruelty-free-beauty.html' },
+  { title: 'Cruelty-Free Living: Beyond Beauty', href: '/guides/cruelty-free-living.html' },
+  { title: 'Vegan Lifestyle Guide', href: '/guides/vegan-lifestyle.html' },
+  { title: 'Understanding Cruelty-Free Certifications', href: '/guides/beginners-guide-cruelty-free-beauty.html' },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} canonical="/guides.html">
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  
+  <div class="bg-stone-50">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+  </div>
+  
+  <section class="bg-sage-900 py-16 lg:py-24">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Guides & Resources</h1>
+        <p class="text-sage-200 text-lg leading-relaxed">
+          Beginner guides, how-tos, and deep dives into cruelty-free living. Learn, explore, and make informed choices.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-stone-50 section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <!-- Featured Guides -->
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        {guides.filter(g => g.featured).map(guide => (
+          <a href={guide.href} class="bg-white rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 block">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="tag-sage text-xs">{guide.tag}</span>
+              <span class="text-xs text-stone-400">{guide.readTime}</span>
+            </div>
+            <h3 class="font-playfair text-xl lg:text-2xl font-medium mb-3 group-hover:text-sage-600 transition-colors">{guide.title}</h3>
+            <p class="text-stone-500 text-sm leading-relaxed">{guide.excerpt}</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-sage-600 mt-4">
+              Read Guide
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+      
+      <!-- All Guides -->
+      <h2 class="mb-6">All Guides</h2>
+      <div class="space-y-4">
+        {guides.map(guide => (
+          <a href={guide.href} class="bg-white rounded-lg p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:shadow-sm transition-all border border-stone-100 hover:border-sage-200">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-medium text-sage-600 bg-sage-50 px-2 py-0.5 rounded-full">{guide.tag}</span>
+                <span class="text-xs text-stone-400">{guide.readTime}</span>
+              </div>
+              <h4 class="font-medium text-stone-900">{guide.title}</h4>
+              <p class="text-sm text-stone-500 mt-1">{guide.excerpt}</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-300 shrink-0 hidden sm:block"><path d="m9 18 6-6-6-6"/></svg>
+          </a>
+        ))}
+      </div>
+      
+      <!-- Quick Tips -->
+      <div class="mt-12">
+        <h2 class="mb-6">Quick Reads</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {quickTips.map(tip => (
+            <a href={tip.href} class="bg-white rounded-lg p-4 border border-stone-100 hover:border-sage-200 hover:shadow-sm transition-all flex items-center justify-between group">
+              <span class="text-stone-700 group-hover:text-sage-600 transition-colors text-sm">{tip.title}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-300 shrink-0"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

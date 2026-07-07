@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = 'Niacinamide for Skin: Benefits & How to Use | Beautiful Vegan';
+const description = 'The do-it-all ingredient every skincare routine needs. Brightens, firms, and protects your skin barrier.';
+
+const breadcrumbItems = [
+  { label: 'Ingredients', href: '/ingredients/avocado-for-skin.html' },
+  { label: 'Niacinamide' },
+];
+
+const faqQuestions = [{"q": "Can I use niacinamide every day?", "a": "Yes, niacinamide is gentle enough for daily use, morning and night."}, {"q": "What percentage should I use?", "a": "2-5% is effective for most people. Higher percentages (10%) are available for specific concerns."}, {"q": "Can I use niacinamide with vitamin C?", "a": "Yes, research shows they can be used together safely and effectively."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Niacinamide',
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-01',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/ingredients/niacinamide-benefits' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/ingredients/niacinamide-benefits" schema={schema} author="Casey Bloom" image="/images/category-skincare.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="relative">
+    <img src="/images/hero-avocado-ingredient.jpg" alt="Niacinamide for skincare" class="w-full aspect-[21/9] object-cover" loading="eager" width="1200" height="514" />
+    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/30 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 container-main px-4 sm:px-6 lg:px-8 pb-8">
+      <span class="tag-sage mb-3 inline-block">Ingredient Guide</span>
+      <h1 class="text-white max-w-3xl font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Niacinamide</h1>
+      <div class="flex items-center gap-4 mt-4 text-white/70 text-sm">
+        <span>By <strong class="text-white">Casey Bloom</strong></span><span>&middot;</span><span>Updated May 15, 2025</span><span>&middot;</span><span>10 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="text-lg text-stone-600 mb-8">
+        <p class="text-xl leading-relaxed"><strong class="text-stone-900">Niacinamide is the Swiss Army knife of skincare ingredients.</strong></p>
+        <p class="mt-4">Also known as vitamin B3, this water-soluble vitamin is one of the most well-researched skincare ingredients. It strengthens the skin barrier, reduces pore appearance, brightens tone, and regulates oil production — all with minimal irritation risk.</p>
+      </div>
+
+      <h2>Key Benefits</h2>
+      <ul class="space-y-3 mb-8 text-stone-600">
+        <li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Strengthens skin barrier</strong> — Boosts ceramide production to improve moisture retention.</span></li>
+<li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Reduces pore appearance</strong> — Regulates sebum production, making pores less visible.</span></li>
+<li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Brightens skin tone</strong> — Reduces hyperpigmentation and evens out discoloration.</span></li>
+<li class="flex items-start gap-2"><svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong>Anti-aging</strong> — Improves elasticity and reduces fine lines over time.</span></li>
+
+      </ul>
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <AuthorBox />
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

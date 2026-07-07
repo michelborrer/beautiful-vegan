@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = "Is Glossier Cruelty-Free? 2025 Update | Beautiful Vegan";
+const description = "Glossier helped define the 'skin first, makeup second' movement. Learn about their cruelty-free status, Leaping Bunny certification, and vegan product range.";
+
+const breadcrumbItems = [
+  { label: 'Brands', href: '/brands.html' },
+  { label: 'Glossier' },
+];
+
+const facts = [{"label": "Cruelty-Free", "value": "Yes", "class": "text-sage-700"}, {"label": "Vegan", "value": "Mostly vegan", "class": "text-stone-700"}, {"label": "Parent Company", "value": "Independent", "class": "text-stone-700"}, {"label": "Certifications", "value": "Leaping Bunny (since 2018)", "class": "text-sage-700"}, {"label": "Sells in China", "value": "No", "class": "text-sage-700"}, {"label": "Price Range", "value": "$$", "class": "text-stone-700"}, {"label": "Popular Products", "value": "Boy Brow, Cloud Paint, Balm Dotcom, Milky Jelly Cleanser", "class": "text-stone-700"}, {"label": "Best Known For", "value": "Natural 'no-makeup' makeup aesthetic", "class": "text-stone-700"}];
+const faqQuestions = [{"q": "Does Glossier test on animals?", "a": "No. Glossier is Leaping Bunny certified since 2018, meaning they do not test on animals at any stage of product development, and neither do their ingredient suppliers."}, {"q": "Is Glossier vegan?", "a": "Most Glossier products are vegan, but a few contain carmine (a red pigment derived from insects) or beeswax. The brand clearly labels which products are vegan on their website. Most of their skincare line is fully vegan."}, {"q": "Is Glossier Leaping Bunny certified?", "a": "Yes. Glossier has been Leaping Bunny certified since 2018. This certification requires ongoing supply chain audits and compliance monitoring."}, {"q": "Why is Glossier so popular?", "a": "Glossier built a devoted following by celebrating real skin and creating products that enhance rather than cover. Their 'skin first, makeup second' philosophy resonated with consumers tired of heavy, full-coverage makeup trends."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: "Is Glossier Cruelty-Free?",
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-15',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/brands/is-glossier-cruelty-free.html' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/brands/is-glossier-cruelty-free.html" schema={schema} author="Casey Bloom" image="/images/category-makeup.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-20">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-20 h-20 bg-stone-700 rounded-full flex items-center justify-center mx-auto mb-6">
+        <span class="font-playfair text-3xl text-white font-bold">G</span>
+      </div>
+      <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Is Glossier Cruelty-Free?</h1>
+      <div class="inline-flex items-center gap-3 bg-sage-800 rounded-full px-6 py-3 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-300"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="text-sage-200 text-lg font-medium">Yes — Leaping Bunny certified since 2018</span>
+      </div>
+      <p class="text-sage-300 leading-relaxed max-w-xl mx-auto">The 'skin first, makeup second' brand is independently owned and certified cruelty-free.</p>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <!-- Facts Table -->
+      <div class="bg-stone-50 rounded-xl overflow-hidden mb-10">
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-stone-200">
+            {facts.map(fact => (
+              <tr>
+                <td class="px-5 py-3 font-medium text-stone-700 w-2/5">{fact.label}</td>
+                <td class="px-5 py-3 {fact.class} font-semibold">{fact.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The Details</h2>
+      <p class="text-stone-600 leading-relaxed mb-6">Glossier launched in 2014 as a direct-to-consumer beauty brand with a radical premise: makeup should be fun, easy, and celebrate the skin you are in. Founder Emily Weiss built the brand from her Into The Gloss beauty blog, creating products that answered real questions from real readers. The result was a line of sheer, buildable products that enhanced natural beauty rather than masking it.</p>
+
+      <p class="text-stone-600 leading-relaxed mb-6">Glossier has been Leaping Bunny certified since 2018, well before cruelty-free became a mainstream concern. They are independently owned (having turned down multiple acquisition offers), which means they control their own supply chain and market decisions. This independence is significant — they have no parent company that might push them into markets requiring animal testing.</p>
+
+      <p class="text-stone-600 leading-relaxed mb-6">While most Glossier products are vegan, a small number contain carmine (a red pigment from insects) or beeswax. The brand is transparent about which items are fully vegan and which are not. Their skincare line is almost entirely vegan, and they continue to reformulate products to remove animal-derived ingredients where possible.</p>
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <div class="border-t border-stone-200 pt-6">
+        <p class="text-xs text-stone-400"><strong>Affiliate Disclosure:</strong> This post contains affiliate links. We earn a commission when you purchase through our links — at no extra cost to you.</p>
+      </div>
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

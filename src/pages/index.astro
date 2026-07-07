@@ -1,0 +1,243 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const pageTitle = 'Beautiful Vegan | Vegan Beauty & Cruelty-Free Cosmetics Reviews';
+const pageDescription = 'Honest reviews of the best vegan & cruelty-free beauty products. Ethical beauty that actually works. Since 2009.';
+
+const latestReviews = [
+  {
+    title: '7 Best Vegan Moisturizers for Every Skin Type in 2025',
+    excerpt: 'We tested 23 vegan moisturizers over 8 weeks. These 7 actually delivered on their promises — from budget drugstore picks to luxury splurges.',
+    image: '/images/articles/moisturizer-review.jpg',
+    category: 'Skincare',
+    categoryHref: '/reviews/skincare.html',
+    href: '/reviews/skincare/best-vegan-moisturizers-2025.html',
+    date: 'May 15, 2025',
+    readTime: '12 min read',
+    author: 'Casey Bloom',
+    rating: '4.8',
+  },
+  {
+    title: 'The Best Vegan Lipsticks That Actually Last All Day',
+    excerpt: 'Tired of reapplying your lipstick every hour? These 6 vegan formulas stay put through coffee, lunch, and everything in between.',
+    image: '/images/articles/lipstick-flatlay.jpg',
+    category: 'Makeup',
+    categoryHref: '/reviews/makeup.html',
+    href: '/reviews/makeup/best-vegan-lipsticks.html',
+    date: 'May 10, 2025',
+    readTime: '8 min read',
+    author: 'Casey Bloom',
+    rating: '4.5',
+  },
+  {
+    title: '5 Vegan Shampoo Bars That Replace Your Bottle',
+    excerpt: 'These concentrated bars clean better than liquid shampoo, last 3x longer, and come with zero plastic packaging.',
+    image: '/images/articles/shampoo-bar.jpg',
+    category: 'Haircare',
+    categoryHref: '/reviews/haircare.html',
+    href: '/reviews/haircare/best-vegan-shampoo-bars.html',
+    date: 'May 5, 2025',
+    readTime: '6 min read',
+    author: 'Casey Bloom',
+    rating: '4.6',
+  },
+  {
+    title: 'Is The Ordinary Cruelty-Free in 2025? The Full Breakdown',
+    excerpt: 'The Ordinary is beloved by skincare enthusiasts, but is it truly cruelty-free? We dig into parent company policies, certifications, and what actually matters.',
+    image: '/images/articles/ordinary-brand.jpg',
+    category: 'Brands',
+    categoryHref: '/brands.html',
+    href: '/brands/is-the-ordinary-cruelty-free.html',
+    date: 'April 28, 2025',
+    readTime: '10 min read',
+    author: 'Casey Bloom',
+  },
+];
+
+const featuredCategories = [
+  { name: 'Skincare', description: 'Cleanse, treat, and hydrate with the best vegan skincare products for every skin type.', image: '/images/category-skincare.jpg', href: '/reviews/skincare.html' },
+  { name: 'Makeup', description: 'Pigment-rich, long-wearing vegan makeup that performs as good as it feels.', image: '/images/category-makeup.jpg', href: '/reviews/makeup.html' },
+  { name: 'Haircare', description: 'Nourish your hair with plant-powered shampoos, conditioners, and treatments.', image: '/images/category-haircare.jpg', href: '/reviews/haircare.html' },
+];
+
+const brandCards = [
+  { name: 'The Ordinary', crueltyFree: true, vegan: 'mostly' },
+  { name: 'CeraVe', crueltyFree: false, vegan: 'no' },
+  { name: 'Versed', crueltyFree: true, vegan: 'yes' },
+  { name: 'Tower 28', crueltyFree: true, vegan: 'yes' },
+  { name: 'e.l.f.', crueltyFree: true, vegan: 'yes' },
+  { name: 'Glossier', crueltyFree: true, vegan: 'mostly' },
+  { name: 'Drunk Elephant', crueltyFree: true, vegan: 'mostly' },
+  { name: 'Kiehl\'s', crueltyFree: false, vegan: 'no' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Beautiful Vegan',
+  url: 'https://beautiful-vegan.com',
+  description: pageDescription,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Beautiful Vegan',
+  },
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} schema={schema}>
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  
+  <!-- Hero Section -->
+  <section class="relative min-h-[75vh] flex items-end pb-16 lg:pb-24">
+    <div class="absolute inset-0">
+      <img src="/images/hero-homepage.jpg" alt="Sage green flat-lay with avocado and skincare products" class="w-full h-full object-cover" loading="eager" width="1920" height="1080" />
+      <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/40 to-transparent"></div>
+    </div>
+    <div class="container-main px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-2xl">
+        <h1 class="text-white mb-5 text-balance font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
+          Beauty Without Compromise
+        </h1>
+        <p class="text-white/90 text-lg md:text-xl mb-8 max-w-xl leading-relaxed">
+          Honest reviews of the best vegan &amp; cruelty-free beauty products. Ethical beauty that actually works.
+        </p>
+        <a href="/reviews/skincare.html" class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3.5 px-8 rounded-full transition-colors">
+          Explore Reviews
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Trust Bar -->
+  <section class="bg-white border-b border-stone-200">
+    <div class="container-main px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+        <div class="flex items-center gap-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-500"><path d="M8 3v2"/><path d="M16 3v2"/><path d="M12 3v2"/><path d="M3 12h18"/><path d="M3 7h18"/><path d="M3 17h18"/><path d="M8 19v2"/><path d="M16 19v2"/><path d="M12 19v2"/><path d="M3 21h18a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z"/></svg>
+          <span class="text-sm font-medium text-stone-700">100% Vegan Focused</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-500"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span class="text-sm font-medium text-stone-700">Cruelty-Free Since 2009</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-500"><path d="M12 7.5a4.5 4.5 0 1 1 4.5 4.5M12 7.5A4.5 4.5 0 1 0 7.5 12M12 7.5V9m-4.5 3a4.5 4.5 0 1 0 4.5 4.5M7.5 12H9m3 4.5V15m4.5-3H15m-3-4.5V9m0 0H9m3 0h1.5"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+          <span class="text-sm font-medium text-stone-700">217+ Sources Referenced</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Categories -->
+  <section class="bg-stone-50 section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="mb-3">Explore by Category</h2>
+        <p class="text-stone-500 max-w-lg mx-auto">Dive into our expert reviews across skincare, makeup, and haircare — all 100% vegan and cruelty-free.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        {featuredCategories.map(cat => (
+          <a href={cat.href} class="card group block">
+            <div class="overflow-hidden">
+              <img src={cat.image} alt={`${cat.name} category`} class="w-full aspect-[3/2] object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="600" height="400" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-playfair text-2xl font-medium mb-2 group-hover:text-sage-600 transition-colors">{cat.name}</h3>
+              <p class="text-stone-500 text-sm leading-relaxed mb-4">{cat.description}</p>
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-sage-600 group-hover:text-sage-700 transition-colors">Explore<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Latest Reviews -->
+  <section class="bg-white section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <h2 class="mb-2">Latest Reviews</h2>
+          <p class="text-stone-500">Fresh picks from our testing lab</p>
+        </div>
+        <a href="/reviews/skincare.html" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-sage-600 hover:text-sage-700 transition-colors">View All<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {latestReviews.map(review => <ArticleCard {...review} />)}
+      </div>
+      <!-- FTC Affiliate Disclosure -->
+      <p class="text-xs text-stone-400 mt-6 text-center max-w-lg mx-auto">
+        Some links on this page are affiliate links. We earn a commission when you purchase through our links — at no extra cost to you.
+        <a href="/privacy-policy#affiliate-disclosure" class="underline hover:text-stone-600">Learn more</a>.
+      </p>
+      <div class="mt-8 text-center sm:hidden">
+        <a href="/reviews/skincare.html" class="btn-secondary">View All Reviews</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Ingredient Spotlight -->
+  <section class="bg-sage-900 section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="order-2 lg:order-1">
+          <img src="/images/hero-avocado-ingredient.jpg" alt="Fresh avocado with golden oil drops and botanical elements" class="rounded-xl w-full aspect-[4/3] object-cover" loading="lazy" width="600" height="450" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="inline-block text-sage-300 text-sm font-medium tracking-wide uppercase mb-4">Ingredient Spotlight</span>
+          <h2 class="text-white mb-5 text-balance">The Power of Natural Ingredients</h2>
+          <p class="text-sage-200 leading-relaxed mb-4">
+            <strong class="text-white">Avocado oil</strong> is not just for toast — it is a skincare powerhouse packed with vitamins A, D, and E, plus omega-3 fatty acids that strengthen your skin barrier and lock in moisture.
+          </p>
+          <p class="text-sage-200 leading-relaxed mb-8">
+            Research shows that avocado oil increases collagen synthesis and reduces inflammation, making it ideal for dry, sensitive, and aging skin. We break down the science and recommend the best avocado-based products that actually work.
+          </p>
+          <a href="/ingredients/avocado-for-skin.html" class="inline-flex items-center gap-2 text-rose-300 hover:text-white font-medium transition-colors">
+            Explore Ingredients
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Brand Guide Teaser -->
+  <section class="bg-stone-50 section-padding">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="mb-3">Is Your Favorite Brand Truly Cruelty-Free?</h2>
+        <p class="text-stone-500 max-w-lg mx-auto">We research every brand&apos;s parent company, certifications, and policies so you don&apos;t have to.</p>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {brandCards.map(brand => (
+          <a href={`/brands/is-${brand.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/--+/g, '-').replace(/^-|-$/g, '')}-cruelty-free.html`} class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 block">
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 font-playfair font-semibold text-sm">{brand.name.charAt(0)}</div>
+              <span class={`text-lg ${brand.crueltyFree ? 'text-sage-500' : 'text-rose-500'}`}>{brand.crueltyFree ? '✓' : '✗'}</span>
+            </div>
+            <h4 class="font-medium text-stone-900 text-sm mb-1">{brand.name}</h4>
+            <div class="flex items-center gap-2 text-xs">
+              <span class={brand.crueltyFree ? 'text-sage-600' : 'text-rose-600'}>{brand.crueltyFree ? 'Cruelty-Free' : 'Not Cruelty-Free'}</span>
+              <span class="text-stone-300">|</span>
+              <span class="text-stone-500">{brand.vegan === 'yes' ? '100% Vegan' : brand.vegan === 'mostly' ? 'Mostly Vegan' : 'Not Vegan'}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/brands.html" class="btn-secondary">Search All Brands</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Newsletter Section -->
+  <NewsletterForm variant="section" />
+  
+  <Footer />
+</Layout>

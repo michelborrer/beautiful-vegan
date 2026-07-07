@@ -1,0 +1,98 @@
+---
+export interface Props {
+  type: 'article' | 'faq' | 'howto' | 'breadcrumb';
+  data?: Record<string, unknown>;
+}
+
+const { type, data } = Astro.props;
+
+function generateSchema() {
+  const baseUrl = 'https://beautiful-vegan.com';
+  
+  switch (type) {
+    case 'article': {
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: data?.headline || 'Article Title',
+        description: data?.description || '',
+        image: data?.image ? (data.image as string).startsWith('http') ? data.image : `${baseUrl}${data.image}` : '',
+        author: {
+          '@type': 'Person',
+          name: data?.author || 'Casey Bloom',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Beautiful Vegan',
+          logo: {
+            '@type': 'ImageObject',
+            url: `${baseUrl}/images/hero-homepage.jpg`,
+          },
+        },
+        datePublished: data?.datePublished || new Date().toISOString(),
+        dateModified: data?.dateModified || new Date().toISOString(),
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': data?.url ? `${baseUrl}${data.url}` : baseUrl,
+        },
+      };
+    }
+    
+    case 'faq': {
+      const questions = (data?.questions as Array<{question: string; answer: string}>) || [];
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: questions.map(q => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: q.answer,
+          },
+        })),
+      };
+    }
+    
+    case 'howto': {
+      const steps = (data?.steps as Array<{name: string; text: string}>) || [];
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: data?.name || 'How To',
+        description: data?.description || '',
+        step: steps.map((step, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          name: step.name,
+          text: step.text,
+          url: data?.url ? `${baseUrl}${data.url}#step${i + 1}` : undefined,
+        })),
+      };
+    }
+    
+    case 'breadcrumb': {
+      const items = (data?.items as Array<{name: string; item: string}>) || [];
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: items.map((item, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: item.name,
+          item: item.item.startsWith('http') ? item.item : `${baseUrl}${item.item}`,
+        })),
+      };
+    }
+    
+    default:
+      return null;
+  }
+}
+
+const schema = generateSchema();
+---
+
+{schema && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)}

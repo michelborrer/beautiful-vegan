@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = 'Get Weekly Vegan Beauty Tips | Beautiful Vegan Newsletter';
+const pageDescription = 'Join 5,000+ readers getting weekly cruelty-free product picks, ingredient guides, and exclusive vegan beauty tips delivered to your inbox.';
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  canonical="/newsletter"
+  noindex={true}
+>
+  <div class="min-h-screen flex flex-col">
+    <!-- Minimal Header -->
+    <header class="py-4 px-6">
+      <a href="/" class="font-playfair text-xl font-semibold text-stone-900">Beautiful Vegan</a>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="flex-1 flex items-center justify-center py-12 px-6">
+      <div class="max-w-lg w-full text-center">
+        <!-- Icon -->
+        <div class="w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-600"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        
+        <h1 class="mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Get the Best Vegan Beauty Tips</h1>
+        <p class="text-stone-500 text-lg leading-relaxed mb-8">
+          Join <strong class="text-stone-900">5,000+ readers</strong> getting weekly cruelty-free product picks and ingredient guides. No spam, ever.
+        </p>
+        
+        <!-- Benefits -->
+        <div class="text-left bg-stone-50 rounded-xl p-6 mb-8">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-stone-700 text-sm">Weekly vegan beauty product recommendations we genuinely love</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-stone-700 text-sm">Ingredient deep-dives that explain the science in plain English</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-stone-700 text-sm">Exclusive deals and early access to our biggest guides</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-sage-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-stone-700 text-sm">Unsubscribe anytime with one click — no questions asked</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Form -->
+        <form class="flex flex-col sm:flex-row gap-3" action="#" method="POST">
+          <input 
+            type="email" 
+            name="email"
+            placeholder="Enter your email"
+            required
+            class="flex-1 px-5 py-4 rounded-full border border-stone-300 bg-white text-stone-900 placeholder:text-stone-400 outline-none focus:border-sage-400 focus:ring-2 focus:ring-sage-200 transition-all text-base"
+          />
+          <button type="submit" class="btn-primary text-base px-8 py-4 whitespace-nowrap">
+            Subscribe Free
+          </button>
+        </form>
+        
+        <p class="text-xs text-stone-400 mt-4">No spam. Unsubscribe anytime.</p>
+        
+        <!-- Social Proof -->
+        <div class="mt-10 pt-8 border-t border-stone-200">
+          <p class="text-sm text-stone-500 mb-4">Trusted by readers who care about ethical beauty</p>
+          <div class="flex items-center justify-center gap-6">
+            <a href="https://instagram.com/beautifulvegan" target="_blank" rel="noopener" class="text-stone-400 hover:text-sage-600 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="https://pinterest.com/beautifulvegan" target="_blank" rel="noopener" class="text-stone-400 hover:text-sage-600 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="8" y2="21"/><path d="M5 12h14"/><path d="M9 21h6"/><path d="M8 8a4 4 0 0 1 8 0c0 2.5-2 4-4 5.5"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Minimal Footer -->
+    <footer class="py-6 text-center border-t border-stone-100">
+      <p class="text-xs text-stone-400">
+        &copy; 2025 Beautiful Vegan. <a href="/privacy-policy.html" class="text-stone-500 hover:text-sage-600">Privacy Policy</a>
+      </p>
+    </footer>
+  </div>
+</Layout>

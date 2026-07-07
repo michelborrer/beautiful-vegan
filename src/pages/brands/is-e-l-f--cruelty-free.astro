@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = 'Is e.l.f. Cruelty-Free? 2025 Update | Beautiful Vegan';
+const description = 'e.l.f. is known for incredibly affordable makeup. But is it cruelty-free and vegan? Here\'s the truth.';
+
+const breadcrumbItems = [
+  { label: 'Brands', href: '/brands.html' },
+  { label: 'e.l.f.' },
+];
+
+const facts = [{"label": "Cruelty-Free", "value": "Yes", "class": "text-sage-700"}, {"label": "Vegan", "value": "Yes", "class": "text-sage-700"}, {"label": "Parent Company", "value": "e.l.f. Beauty (public)", "class": "text-stone-700"}, {"label": "Certifications", "value": "PETA", "class": "text-sage-700"}, {"label": "Sells in China", "value": "No", "class": "text-sage-700"}, {"label": "Price Range", "value": "$", "class": "text-stone-700"}, {"label": "Popular Products", "value": "Holy Hydration Cream, Poreless Putty Primer", "class": "text-stone-700"}, {"label": "Alternatives", "value": "NYX, Milani", "class": "text-sage-700"}];
+const faqQuestions = [{"q": "Is e.l.f. cruelty-free?", "a": "Yes. e.l.f. is PETA-certified cruelty-free and does not test on animals."}, {"q": "Is e.l.f. vegan?", "a": "Yes. All e.l.f. products are 100% vegan with no animal-derived ingredients."}, {"q": "Is e.l.f. good quality?", "a": "Yes. e.l.f. has significantly improved their formulations in recent years and now competes with much more expensive brands."}, {"q": "Where is e.l.f. made?", "a": "e.l.f. products are made in China, but they are manufactured there specifically to avoid animal testing on imported goods."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Is e.l.f. Cruelty-Free?',
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-01',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/brands/is-e-l-f--cruelty-free' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/brands/is-e-l-f--cruelty-free" schema={schema} author="Casey Bloom" image="/images/category-makeup.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-20">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-20 h-20 bg-stone-700 rounded-full flex items-center justify-center mx-auto mb-6">
+        <span class="font-playfair text-3xl text-white font-bold">E</span>
+      </div>
+      <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Is e.l.f. Cruelty-Free?</h1>
+      <div class="inline-flex items-center gap-3 bg-sage-800 rounded-full px-6 py-3 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-400"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="text-sage-200 text-lg font-medium">Yes — e.l.f. IS cruelty-free</span>
+      </div>
+      <p class="text-sage-300 leading-relaxed max-w-xl mx-auto">e.l.f. is PETA-certified cruelty-free and 100% vegan.</p>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <!-- Facts Table -->
+      <div class="bg-stone-50 rounded-xl overflow-hidden mb-10">
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-stone-200">
+            {facts.map(fact => (
+              <tr>
+                <td class="px-5 py-3 font-medium text-stone-700 w-2/5">{fact.label}</td>
+                <td class="px-5 py-3 {fact.class} font-semibold">{fact.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The Details</h2>
+      <p class="text-stone-600 leading-relaxed mb-6">e.l.f. Cosmetics has been a cruelty-free and vegan brand since its founding in 2004. They are PETA-certified and have committed to keeping all products free from animal-derived ingredients. At their price point, they are one of the best values in cruelty-free beauty.</p>
+
+      <p class="text-stone-600 leading-relaxed mb-6">e.l.f. is our go-to recommendation for budget-conscious cruelty-free shoppers. Their <strong>Holy Hydration! Face Cream</strong> was our Best Budget pick in our 2025 vegan moisturizer review — packed with niacinamide and peptides at just $12.</p>
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <div class="border-t border-stone-200 pt-6">
+        <p class="text-xs text-stone-400"><strong>Affiliate Disclosure:</strong> This post contains affiliate links. We earn a commission when you purchase through our links — at no extra cost to you.</p>
+      </div>
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

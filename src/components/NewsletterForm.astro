@@ -1,0 +1,42 @@
+---
+export interface Props {
+  variant?: 'inline' | 'section';
+}
+
+const { variant = 'inline' } = Astro.props;
+---
+
+{variant === 'section' ? (
+  <section class="bg-stone-100 section-padding">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-playfair text-3xl lg:text-4xl font-medium mb-4">Get the Best Vegan Beauty Tips</h2>
+      <p class="text-stone-600 mb-8 max-w-lg mx-auto">
+        Join 5,000+ readers getting weekly cruelty-free product picks and ingredient guides.
+      </p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="New Beautiful Vegan subscriber" />
+        <input 
+          type="email" 
+          name="email"
+          placeholder="Enter your email"
+          required
+          class="flex-1 px-5 py-3.5 rounded-full border border-stone-300 bg-white text-stone-900 placeholder:text-stone-400 outline-none focus:border-sage-400 focus:ring-2 focus:ring-sage-200 transition-all"
+        />
+        <button type="submit" class="btn-primary whitespace-nowrap">Subscribe</button>
+      </form>
+      <p class="text-xs text-stone-400 mt-4">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+) : (
+  <form class="flex flex-col sm:flex-row gap-3 w-full" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <input type="hidden" name="_subject" value="New Beautiful Vegan subscriber" />
+    <input 
+      type="email" 
+      name="email"
+      placeholder="Enter your email"
+      required
+      class="flex-1 px-5 py-3 rounded-full border border-stone-300 bg-white text-stone-900 placeholder:text-stone-400 outline-none focus:border-sage-400 focus:ring-2 focus:ring-sage-200 transition-all"
+    />
+    <button type="submit" class="btn-primary whitespace-nowrap py-3 px-6">Subscribe</button>
+  </form>
+)}

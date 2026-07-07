@@ -1,0 +1,21 @@
+{
+  "name": "beautiful-vegan",
+  "version": "1.0.0",
+  "description": "Beautiful Vegan - Premium vegan beauty and cruelty-free cosmetics editorial site",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.16.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -1,0 +1,98 @@
+---
+const navLinks = [
+  { label: 'Skincare', href: '/reviews/skincare.html' },
+  { label: 'Makeup', href: '/reviews/makeup.html' },
+  { label: 'Haircare', href: '/reviews/haircare.html' },
+  { label: 'Ingredients', href: '/ingredients/avocado-for-skin.html' },
+  { label: 'Brands', href: '/brands.html' },
+  { label: 'Guides', href: '/guides.html' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="container-main px-4 sm:px-6 lg:px-8">
+    <nav class="flex items-center justify-between h-16 lg:h-18">
+      <a href="/" class="flex items-center gap-2 shrink-0">
+        <span class="font-playfair text-xl lg:text-2xl font-semibold text-stone-900">Beautiful Vegan</span>
+      </a>
+      
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a href={link.href} class={`text-sm font-medium transition-colors duration-200 ${currentPath === link.href || currentPath.startsWith(link.href.replace('.html', '/')) ? 'text-sage-600' : 'text-stone-600 hover:text-sage-600'}`}>{link.label}</a>
+        ))}
+      </div>
+      
+      <div class="hidden lg:flex items-center gap-4">
+        <button id="search-toggle" class="p-2 text-stone-600 hover:text-sage-600 transition-colors" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <a href="/newsletter.html" class="btn-primary text-sm py-2.5 px-5">Newsletter</a>
+      </div>
+      
+      <button id="mobile-menu-btn" class="lg:hidden p-2 text-stone-700" aria-label="Toggle menu">
+        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </nav>
+  </div>
+  
+  <div id="mobile-menu" class="lg:hidden hidden bg-white/95 backdrop-blur-lg border-t border-stone-200 shadow-lg">
+    <div class="container-main px-4 sm:px-6 lg:px-8 py-4 space-y-1">
+      {navLinks.map(link => (
+        <a href={link.href} class="block py-3 px-4 text-stone-700 font-medium hover:bg-sage-50 hover:text-sage-600 rounded-lg transition-colors">{link.label}</a>
+      ))}
+      <div class="pt-4 border-t border-stone-200 mt-4">
+        <a href="/newsletter.html" class="btn-primary w-full text-center">Subscribe to Newsletter</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="search-overlay" class="fixed inset-0 bg-stone-900/50 z-[60] hidden items-start justify-center pt-24">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl mx-4 p-6">
+    <div class="flex items-center gap-3 border-b border-stone-200 pb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="search-input" placeholder="Search articles, ingredients, brands..." class="flex-1 text-lg outline-none text-stone-900 placeholder:text-stone-400" />
+      <button id="search-close" class="text-stone-400 hover:text-stone-600">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="pt-4 text-sm text-stone-500"><p>Press <kbd class="px-2 py-1 bg-stone-100 rounded text-xs">ESC</kbd> to close</p></div>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 50) { nav?.classList.add('bg-white/90', 'backdrop-blur-lg', 'shadow-sm'); }
+    else { nav?.classList.remove('bg-white/90', 'backdrop-blur-lg', 'shadow-sm'); }
+    lastScroll = currentScroll;
+  });
+  
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuIcon?.classList.remove('hidden'); closeIcon?.classList.add('hidden'); });
+  });
+  
+  const searchToggle = document.getElementById('search-toggle');
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchClose = document.getElementById('search-close');
+  const searchInput = document.getElementById('search-input');
+  searchToggle?.addEventListener('click', () => { searchOverlay?.classList.remove('hidden'); searchOverlay?.classList.add('flex'); setTimeout(() => searchInput?.focus(), 100); });
+  const closeSearch = () => { searchOverlay?.classList.add('hidden'); searchOverlay?.classList.remove('flex'); };
+  searchClose?.addEventListener('click', closeSearch);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSearch(); });
+  searchOverlay?.addEventListener('click', (e) => { if (e.target === searchOverlay) closeSearch(); });
+</script>

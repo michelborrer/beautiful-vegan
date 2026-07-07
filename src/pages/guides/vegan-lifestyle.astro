@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = 'The Vegan Lifestyle Guide | Beautiful Vegan';
+const description = 'A comprehensive guide to embracing veganism in all areas of life — from nutrition and cooking to travel and social situations.';
+
+const breadcrumbItems = [
+  { label: 'Guides', href: '/guides.html' },
+  { label: 'The Vegan Lifestyle Guide' },
+];
+
+const faqQuestions = [{"q": "Is a vegan diet healthy?", "a": "Yes, a well-planned vegan diet can meet all nutritional needs and may reduce the risk of heart disease, type 2 diabetes, and certain cancers. Consult a registered dietitian when transitioning."}, {"q": "What do I need to supplement?", "a": "Vitamin B12 is essential — it is not reliably available from plant foods. Many vegans also supplement vitamin D, omega-3s (algae-based), and iron depending on individual needs."}, {"q": "How do I handle social situations?", "a": "Communicate your needs politely in advance. Offer to bring a dish to share. Most people are accommodating when you approach the conversation with positivity rather than judgment."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'The Vegan Lifestyle Guide',
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-01',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/guides/vegan-lifestyle.astro' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/guides/vegan-lifestyle.astro" schema={schema} author="Casey Bloom" image="/images/hero-homepage.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-24">
+    <div class="container-main px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <span class="text-sage-300 text-sm font-medium tracking-wide uppercase mb-4 block">Lifestyle Guide</span>
+        <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">The Vegan Lifestyle Guide</h1>
+        <p class="text-sage-200 text-lg leading-relaxed">A comprehensive guide to embracing veganism in all areas of life — from nutrition and cooking to travel and social situations.</p>
+        <div class="flex items-center gap-3 mt-4 text-white/70 text-sm">
+          <span>By <strong class="text-white">Casey Bloom</strong></span><span>&middot;</span><span>20 min read</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <h2>What Is Veganism?</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Veganism is a way of living that seeks to exclude, as far as possible and practicable, all forms of exploitation of animals for food, clothing, or any other purpose. It extends beyond diet to encompass all lifestyle choices.</p>
+<h2>Vegan Nutrition Basics</h2>
+<p class="text-stone-600 leading-relaxed mb-6">A well-planned vegan diet provides all the nutrients you need. Focus on protein sources like legumes, tofu, tempeh, and seitan. Ensure adequate B12 through supplements or fortified foods, and consider vitamin D and omega-3 supplements.</p>
+<h2>Vegan Cooking for Beginners</h2>
+<p class="text-stone-600 leading-relaxed mb-6">Start with simple swaps: oat milk in coffee, nutritional yeast for cheesy flavor, and cashew cream for richness. Invest in a good blender and learn to make versatile staples like hummus, tahini dressing, and vegan pesto.</p>
+<h2>Eating Out and Traveling</h2>
+<p class="text-stone-600 leading-relaxed mb-6">HappyCow is an essential app for finding vegan restaurants worldwide. When dining with non-vegan friends, call ahead to ask about options — most restaurants can accommodate with advance notice.</p>
+
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <AuthorBox />
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>

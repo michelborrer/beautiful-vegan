@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const title = 'Is Versed Cruelty-Free? 2025 Update | Beautiful Vegan';
+const description = 'Versed is a popular clean beauty brand. But is it truly cruelty-free and vegan? We investigate.';
+
+const breadcrumbItems = [
+  { label: 'Brands', href: '/brands.html' },
+  { label: 'Versed' },
+];
+
+const facts = [{"label": "Cruelty-Free", "value": "Yes", "class": "text-sage-700"}, {"label": "Vegan", "value": "Yes", "class": "text-sage-700"}, {"label": "Parent Company", "value": "Independent", "class": "text-stone-700"}, {"label": "Certifications", "value": "Leaping Bunny, PETA", "class": "text-sage-700"}, {"label": "Sells in China", "value": "No", "class": "text-sage-700"}, {"label": "Price Range", "value": "$$", "class": "text-stone-700"}, {"label": "Popular Products", "value": "Dew Point Moisturizer, Guards Up Sunscreen", "class": "text-stone-700"}, {"label": "Alternatives", "value": "e.l.f., The Ordinary", "class": "text-sage-700"}];
+const faqQuestions = [{"q": "Is Versed cruelty-free?", "a": "Yes. Versed is Leaping Bunny certified and does not test on animals."}, {"q": "Is Versed vegan?", "a": "Yes. All Versed products are 100% vegan."}, {"q": "Who owns Versed?", "a": "Versed is an independent brand, not owned by a larger parent company."}, {"q": "Where can I buy Versed?", "a": "Versed is available at Target, Ulta, and on their website."}];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Is Versed Cruelty-Free?',
+  description,
+  author: { '@type': 'Person', name: 'Casey Bloom' },
+  publisher: { '@type': 'Organization', name: 'Beautiful Vegan', logo: { '@type': 'ImageObject', url: 'https://beautiful-vegan.com/images/logo.png' } },
+  datePublished: '2025-05-01',
+  dateModified: '2025-05-15',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://beautiful-vegan.com/brands/is-versed-cruelty-free' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqQuestions.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout title={title} description={description} canonical="/brands/is-versed-cruelty-free" schema={schema} author="Casey Bloom" image="/images/category-skincare.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <Navigation />
+  <div class="h-16 lg:h-18"></div>
+  <div class="bg-stone-50"><div class="container-main px-4 sm:px-6 lg:px-8"><Breadcrumb items={breadcrumbItems} /></div></div>
+
+  <section class="bg-sage-900 py-16 lg:py-20">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-20 h-20 bg-stone-700 rounded-full flex items-center justify-center mx-auto mb-6">
+        <span class="font-playfair text-3xl text-white font-bold">V</span>
+      </div>
+      <h1 class="text-white mb-4 font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">Is Versed Cruelty-Free?</h1>
+      <div class="inline-flex items-center gap-3 bg-sage-800 rounded-full px-6 py-3 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sage-400"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="text-sage-200 text-lg font-medium">Yes — Versed IS cruelty-free</span>
+      </div>
+      <p class="text-sage-300 leading-relaxed max-w-xl mx-auto">Versed is Leaping Bunny certified and 100% vegan.</p>
+    </div>
+  </section>
+
+  <article class="bg-white">
+    <div class="container-narrow px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <!-- Facts Table -->
+      <div class="bg-stone-50 rounded-xl overflow-hidden mb-10">
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-stone-200">
+            {facts.map(fact => (
+              <tr>
+                <td class="px-5 py-3 font-medium text-stone-700 w-2/5">{fact.label}</td>
+                <td class="px-5 py-3 {fact.class} font-semibold">{fact.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The Details</h2>
+      <p class="text-stone-600 leading-relaxed mb-6">Versed is a clean beauty brand committed to both effectiveness and ethics. They are Leaping Bunny certified, which means their entire supply chain is independently audited for animal testing. All their products are 100% vegan, and they do not sell in China or any market that requires animal testing.</p>
+
+      <p class="text-stone-600 leading-relaxed mb-6">Versed is one of our top-recommended cruelty-free brands, especially for those transitioning from mainstream brands like CeraVe or Neutrogena. Their <strong>Dew Point Moisturizing Gel-Cream</strong> won our Best Overall vegan moisturizer pick for 2025.</p>
+
+      <h2 class="mb-5">Frequently Asked Questions</h2>
+      <div class="space-y-3 mb-10">
+        {faqQuestions.map((faq, i) => (
+          <details class="bg-stone-50 rounded-lg group" open={i === 0}>
+            <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+              <span class="font-medium text-stone-900 pr-4">{faq.q}</span>
+              <svg class="w-5 h-5 text-stone-400 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4"><p class="text-stone-600 leading-relaxed">{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <div class="border-t border-stone-200 pt-6">
+        <p class="text-xs text-stone-400"><strong>Affiliate Disclosure:</strong> This post contains affiliate links. We earn a commission when you purchase through our links — at no extra cost to you.</p>
+      </div>
+    </div>
+  </article>
+
+  <NewsletterForm variant="section" />
+  <Footer />
+</Layout>
