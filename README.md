@@ -4,9 +4,9 @@ Astro static site for [beautiful-vegan.com](https://beautiful-vegan.com) — hon
 
 ## Stack
 
-- [Astro](https://astro.build) 4 (static output, `.html` file format)
+- [Astro](https://astro.build) 4 (static output, clean URLs)
 - Tailwind CSS 3
-- Deployed on Cloudflare Workers (static assets), worker name `long-pond-37c9`
+- Deployed on [Cloudflare Pages](https://beautiful-vegan.pages.dev) (GitHub auto-deploy from `main`)
 
 ## Development
 
@@ -19,9 +19,23 @@ npm run preview  # preview the production build
 
 ## Deploy
 
+**Automatic:** push to `main` on GitHub — Cloudflare Pages builds with `npm run build` and publishes `./dist`.
+
+**Manual fallback** (Worker assets deploy):
+
 ```bash
 npm run build
 npx wrangler deploy
 ```
 
-This updates the existing `long-pond-37c9` worker that serves beautiful-vegan.com.
+The legacy Worker `long-pond-37c9` config remains in `wrangler.jsonc` for emergency manual deploys.
+
+## Cloudflare Pages
+
+| Setting | Value |
+|---------|-------|
+| Project | `beautiful-vegan` |
+| Repo | `michelborrer/beautiful-vegan` |
+| Branch | `main` |
+| Build | `npm run build` |
+| Output | `dist` |
